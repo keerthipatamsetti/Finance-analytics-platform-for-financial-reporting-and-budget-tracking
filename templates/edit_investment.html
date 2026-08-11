@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Edit Investment</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+body{
+background:#eef3f8;
+font-family:Arial;
+}
+
+.card{
+margin-top:50px;
+border:none;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+padding:30px;
+}
+
+.btn-save{
+background:#0d6efd;
+color:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h2 class="mb-4">
+
+<i class="fa-solid fa-pen"></i>
+
+Edit Investment
+
+</h2>
+
+<form method="POST">
+
+<div class="row">
+
+<div class="col-md-6">
+
+<label>Asset Type</label>
+
+<select class="form-control" name="asset">
+
+<option {% if investment.asset=="Stocks" %}selected{% endif %}>Stocks</option>
+
+<option {% if investment.asset=="Mutual Fund" %}selected{% endif %}>Mutual Fund</option>
+
+<option {% if investment.asset=="Gold" %}selected{% endif %}>Gold</option>
+
+<option {% if investment.asset=="Fixed Deposit" %}selected{% endif %}>Fixed Deposit</option>
+
+<option {% if investment.asset=="Crypto" %}selected{% endif %}>Crypto</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6">
+
+<label>Investment Name</label>
+
+<input
+type="text"
+class="form-control"
+name="investment_name"
+value="{{ investment.investment_name }}">
+
+</div>
+
+</div>
+
+<br>
+
+<div class="row">
+
+<div class="col-md-4">
+
+<label>Purchase Date</label>
+
+<input
+type="date"
+class="form-control"
+name="purchase_date"
+value="{{ investment.purchase_date }}">
+
+</div>
+
+<div class="col-md-4">
+
+<label>Invested Amount</label>
+
+<input
+type="number"
+class="form-control"
+name="invested_amount"
+value="{{ investment.invested_amount }}">
+
+</div>
+
+<div class="col-md-4">
+
+<label>Current Value</label>
+
+<input
+type="number"
+class="form-control"
+name="current_value"
+value="{{ investment.current_value }}">
+
+</div>
+
+</div>
+
+<br>
+
+<button class="btn btn-save">
+
+<i class="fa-solid fa-floppy-disk"></i>
+
+Update Investment
+
+</button>
+
+<a href="/investment" class="btn btn-secondary">
+
+Back
+
+</a>
+
+</form>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

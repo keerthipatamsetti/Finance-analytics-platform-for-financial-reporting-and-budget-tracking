@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile - Smart Finance Insights</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif;
+            background: #f3f6fb;
+            color: #263238;
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background: #0d47a1;
+            padding: 20px 15px;
+            overflow-y: auto;
+        }
+
+        .sidebar-brand {
+            text-align: center;
+            color: white;
+            margin-bottom: 25px;
+        }
+
+        .sidebar-brand i {
+            font-size: 38px;
+            margin-bottom: 8px;
+        }
+
+        .sidebar-brand h4 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .sidebar-brand small {
+            opacity: 0.8;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            text-decoration: none;
+            padding: 12px 14px;
+            margin-bottom: 6px;
+            border-radius: 9px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: #1976d2;
+        }
+
+        .sidebar a.active {
+            background: #1976d2;
+        }
+
+        .sidebar a i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .menu-title {
+            color: #bbdefb;
+            font-size: 12px;
+            font-weight: 700;
+            margin: 20px 10px 8px;
+            text-transform: uppercase;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main {
+            margin-left: 250px;
+            padding: 30px;
+        }
+
+        /* ================= PAGE HEADER ================= */
+
+        .page-header {
+            background: white;
+            border-radius: 18px;
+            padding: 25px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.07);
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-header h2 {
+            margin: 0;
+            font-weight: 700;
+            color: #0d47a1;
+        }
+
+        .page-header p {
+            margin: 6px 0 0;
+            color: #78909c;
+        }
+
+        .page-header-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 14px;
+            background: #e3f2fd;
+            color: #0d47a1;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 25px;
+        }
+
+        /* ================= PROFILE HERO ================= */
+
+        .profile-hero {
+            background: linear-gradient(135deg, #0d47a1, #1976d2);
+            border-radius: 20px;
+            padding: 35px;
+            color: white;
+            margin-bottom: 25px;
+
+            display: flex;
+            align-items: center;
+            gap: 25px;
+
+            box-shadow: 0 8px 25px rgba(13,71,161,0.25);
+        }
+
+        .profile-avatar {
+            width: 115px;
+            height: 115px;
+            border-radius: 50%;
+
+            background: white;
+            color: #0d47a1;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 48px;
+            font-weight: 700;
+
+            border: 5px solid rgba(255,255,255,0.4);
+
+            flex-shrink: 0;
+        }
+
+        .profile-hero h3 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .profile-hero p {
+            margin: 6px 0;
+            opacity: 0.9;
+        }
+
+        .profile-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.18);
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-top: 8px;
+            font-size: 13px;
+        }
+
+        /* ================= PROFILE CARD ================= */
+
+        .profile-card {
+            background: white;
+            border-radius: 18px;
+            padding: 28px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.07);
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            border-bottom: 1px solid #eeeeee;
+            padding-bottom: 15px;
+            margin-bottom: 22px;
+        }
+
+        .card-title h4 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .card-title i {
+            color: #1976d2;
+        }
+
+        /* ================= INFO BOX ================= */
+
+        .info-box {
+            background: #f8fafc;
+            border: 1px solid #e8edf3;
+            border-radius: 12px;
+            padding: 15px;
+            height: 100%;
+        }
+
+        .info-label {
+            display: block;
+            color: #78909c;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #263238;
+            word-break: break-word;
+        }
+
+        /* ================= BUTTONS ================= */
+
+        .profile-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .btn-edit {
+            background: #0d6efd;
+            color: white;
+            border: none;
+            padding: 11px 22px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn-edit:hover {
+            background: #0b5ed7;
+            color: white;
+        }
+
+        .btn-dashboard {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 11px 22px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn-dashboard:hover {
+            background: #5c636a;
+            color: white;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            text-align: center;
+            color: #78909c;
+            padding: 25px 10px;
+            margin-top: 20px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                width: 210px;
+            }
+
+            .main {
+                margin-left: 210px;
+            }
+
+        }
+
+        @media (max-width: 768px) {
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 15px;
+            }
+
+            .profile-hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .page-header {
+                padding: 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<!-- ================= SIDEBAR ================= -->
+
+<div class="sidebar">
+
+    <div class="sidebar-brand">
+
+        <i class="fas fa-robot"></i>
+
+        <h4>Smart Finance</h4>
+
+        <small>Finance Insights</small>
+
+    </div>
+
+
+    <p class="menu-title">Main</p>
+
+    <a href="/dashboard">
+        <i class="fas fa-home"></i>
+        <span>Dashboard</span>
+    </a>
+
+    <a href="/income">
+        <i class="fas fa-wallet"></i>
+        <span>Income</span>
+    </a>
+
+    <a href="/expense">
+        <i class="fas fa-money-bill-wave"></i>
+        <span>Expenses</span>
+    </a>
+
+    <a href="/transactions">
+        <i class="fas fa-receipt"></i>
+        <span>Transactions</span>
+    </a>
+
+    <a href="/budget">
+        <i class="fas fa-chart-pie"></i>
+        <span>Budget</span>
+    </a>
+
+    <a href="/investment">
+        <i class="fas fa-chart-line"></i>
+        <span>Investments</span>
+    </a>
+
+    <a href="/portfolio_analytics">
+        <i class="fas fa-briefcase"></i>
+        <span>Portfolio Analytics</span>
+    </a>
+
+
+    <p class="menu-title">Analytics</p>
+
+    <a href="/spending_analysis">
+        <i class="fas fa-chart-column"></i>
+        <span>Spending Analysis</span>
+    </a>
+
+    <a href="/financial_health">
+        <i class="fas fa-heart"></i>
+        <span>Financial Health</span>
+    </a>
+
+    <a href="/reports">
+        <i class="fas fa-file-lines"></i>
+        <span>Reports</span>
+    </a>
+
+    <a href="/ai_insights">
+        <i class="fas fa-brain"></i>
+        <span>AI Insights</span>
+    </a>
+
+
+    <p class="menu-title">System</p>
+
+    <a href="/notifications">
+        <i class="fas fa-bell"></i>
+        <span>Notifications</span>
+    </a>
+
+    <a href="/settings">
+        <i class="fas fa-cog"></i>
+        <span>Settings</span>
+    </a>
+
+    <a href="/profile" class="active">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+    </a>
+
+    <a href="/logout">
+        <i class="fas fa-right-from-bracket"></i>
+        <span>Logout</span>
+    </a>
+
+</div>
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="main">
+
+
+    <!-- PAGE HEADER -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>
+                <i class="fas fa-user-circle"></i>
+                My Profile
+            </h2>
+
+            <p>
+                Manage and view your personal information
+            </p>
+
+        </div>
+
+        <div class="page-header-icon">
+
+            <i class="fas fa-user"></i>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= PROFILE HERO ================= -->
+
+    <div class="profile-hero">
+
+        <div class="profile-avatar">
+
+            {{ user.name[0]|upper if user and user.name else 'U' }}
+
+        </div>
+
+        <div>
+
+            <h3>
+                {{ user.name if user else 'User' }}
+            </h3>
+
+            <p>
+                <i class="fas fa-envelope"></i>
+                {{ user.email if user else 'Email not available' }}
+            </p>
+
+            <span class="profile-badge">
+
+                <i class="fas fa-shield-halved"></i>
+                Smart Finance User
+
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= PERSONAL INFORMATION ================= -->
+
+    <div class="profile-card">
+
+        <div class="card-title">
+
+            <i class="fas fa-id-card"></i>
+
+            <h4>Personal Information</h4>
+
+        </div>
+
+
+        <div class="row g-3">
+
+            <div class="col-md-6">
+
+                <div class="info-box">
+
+                    <span class="info-label">
+                        Full Name
+                    </span>
+
+                    <span class="info-value">
+
+                        {{ user.name if user else 'Not available' }}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6">
+
+                <div class="info-box">
+
+                    <span class="info-label">
+                        Email Address
+                    </span>
+
+                    <span class="info-value">
+
+                        {{ user.email if user else 'Not available' }}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6">
+
+                <div class="info-box">
+
+                    <span class="info-label">
+                        Account ID
+                    </span>
+
+                    <span class="info-value">
+
+                        #{{ user.id if user else '---' }}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6">
+
+                <div class="info-box">
+
+                    <span class="info-label">
+                        Account Status
+                    </span>
+
+                    <span class="info-value text-success">
+
+                        <i class="fas fa-circle"
+                           style="font-size:8px;"></i>
+
+                        Active
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="profile-actions">
+
+            <a href="/edit_profile"
+               class="btn-edit">
+
+                <i class="fas fa-user-pen"></i>
+
+                Edit Profile
+
+            </a>
+
+            <a href="/settings"
+               class="btn-dashboard">
+
+                <i class="fas fa-cog"></i>
+
+                Account Settings
+
+            </a>
+
+        </div>
+
+    </div>
+    <!-- ================= PROFILE INFORMATION ================= -->
+
+<div class="profile-info">
+
+    <div class="info-title">
+        <i class="fas fa-user-circle"></i>
+        Account Information
+    </div>
+
+    <div class="info-grid">
+
+        <div class="info-item">
+            <span class="label">
+                <i class="fas fa-user"></i>
+                Full Name
+            </span>
+
+            <strong>
+                {{ user.name if user else 'User' }}
+            </strong>
+        </div>
+
+        <div class="info-item">
+            <span class="label">
+                <i class="fas fa-envelope"></i>
+                Email Address
+            </span>
+
+            <strong>
+                {{ user.email if user else 'Not available' }}
+            </strong>
+        </div>
+
+        <div class="info-item">
+            <span class="label">
+                <i class="fas fa-calendar"></i>
+                Account Status
+            </span>
+
+            <strong class="active-status">
+                <i class="fas fa-circle"></i>
+                Active
+            </strong>
+        </div>
+
+        <div class="info-item">
+            <span class="label">
+                <i class="fas fa-shield-halved"></i>
+                Security
+            </span>
+
+            <strong>
+                Protected
+            </strong>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= FINANCIAL SUMMARY ================= -->
+
+<div class="financial-summary">
+
+    <div class="section-title">
+        <i class="fas fa-chart-line"></i>
+        Financial Summary
+    </div>
+
+    <div class="summary-grid">
+
+        <div class="summary-box income">
+            <div class="summary-icon">
+                <i class="fas fa-wallet"></i>
+            </div>
+
+            <div>
+                <span>Total Income</span>
+                <h4 id="profileIncome">₹0</h4>
+            </div>
+        </div>
+
+
+        <div class="summary-box expense">
+            <div class="summary-icon">
+                <i class="fas fa-money-bill-wave"></i>
+            </div>
+
+            <div>
+                <span>Total Expenses</span>
+                <h4 id="profileExpense">₹0</h4>
+            </div>
+        </div>
+
+
+        <div class="summary-box savings">
+            <div class="summary-icon">
+                <i class="fas fa-piggy-bank"></i>
+            </div>
+
+            <div>
+                <span>Total Savings</span>
+                <h4 id="profileSavings">₹0</h4>
+            </div>
+        </div>
+
+
+        <div class="summary-box health">
+            <div class="summary-icon">
+                <i class="fas fa-heart"></i>
+            </div>
+
+            <div>
+                <span>Financial Health</span>
+                <h4 id="profileHealth">0/100</h4>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= PROFILE ACTIONS ================= -->
+
+<div class="profile-actions">
+
+    <a href="/edit_profile"
+       class="profile-action primary">
+
+        <i class="fas fa-user-pen"></i>
+
+        <div>
+            <strong>Edit Profile</strong>
+            <small>Update your personal information</small>
+        </div>
+
+        <i class="fas fa-chevron-right arrow"></i>
+
+    </a>
+
+
+    <a href="/settings"
+       class="profile-action">
+
+        <i class="fas fa-cog"></i>
+
+        <div>
+            <strong>Account Settings</strong>
+            <small>Manage your application preferences</small>
+        </div>
+
+        <i class="fas fa-chevron-right arrow"></i>
+
+    </a>
+
+
+    <a href="/change_password"
+       class="profile-action">
+
+        <i class="fas fa-lock"></i>
+
+        <div>
+            <strong>Change Password</strong>
+            <small>Keep your account secure</small>
+        </div>
+
+        <i class="fas fa-chevron-right arrow"></i>
+
+    </a>
+    <!-- ================= LOGOUT ================= -->
+
+<a href="/logout"
+   class="profile-action logout">
+
+    <i class="fas fa-right-from-bracket"></i>
+
+    <div>
+        <strong>Logout</strong>
+
+        <small>
+            Sign out from Smart Finance Insights
+        </small>
+    </div>
+
+    <i class="fas fa-chevron-right arrow"></i>
+
+</a>
+
+
+<!-- ================= BACK TO DASHBOARD ================= -->
+
+<div class="text-center mt-4 mb-4">
+
+    <a href="/dashboard"
+       class="btn btn-secondary px-4">
+
+        <i class="fas fa-arrow-left"></i>
+
+        Back to Dashboard
+
+    </a>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="profile-footer">
+
+    <hr>
+
+    <h6>
+        🤖 Smart Finance Insights
+    </h6>
+
+    <small>
+        Personal Financial Management System
+        • © 2026
+    </small>
+
+</footer>
+
+
+<!-- ================= PROFILE SCRIPT ================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const income =
+        {{ total_income|default(0) }};
+
+    const expense =
+        {{ total_expense|default(0) }};
+
+    const savings =
+        income - expense;
+
+    let health = 0;
+
+    if (income > 0) {
+
+        health = Math.round(
+            Math.max(
+                0,
+                Math.min(
+                    100,
+                    (savings / income) * 100
+                )
+            )
+        );
+
+    }
+
+
+    const incomeElement =
+        document.getElementById("profileIncome");
+
+    const expenseElement =
+        document.getElementById("profileExpense");
+
+    const savingsElement =
+        document.getElementById("profileSavings");
+
+    const healthElement =
+        document.getElementById("profileHealth");
+
+
+    if (incomeElement) {
+
+        incomeElement.innerText =
+            "₹" + income.toLocaleString("en-IN");
+
+    }
+
+
+    if (expenseElement) {
+
+        expenseElement.innerText =
+            "₹" + expense.toLocaleString("en-IN");
+
+    }
+
+
+    if (savingsElement) {
+
+        savingsElement.innerText =
+            "₹" + savings.toLocaleString("en-IN");
+
+    }
+
+
+    if (healthElement) {
+
+        healthElement.innerText =
+            health + "/100";
+
+    }
+
+});
+
+</script>
+
+
+</div>
+
+</body>
+
+</html>

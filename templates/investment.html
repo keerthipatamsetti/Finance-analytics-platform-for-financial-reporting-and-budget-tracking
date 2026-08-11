@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Investment Portfolio</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+body{
+background:#eef3f8;
+font-family:Arial,sans-serif;
+}
+
+.header{
+background:linear-gradient(90deg,#0d6efd,#20c997);
+color:white;
+padding:25px;
+border-radius:15px;
+margin-top:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+.card{
+border:none;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.summary-card{
+padding:20px;
+text-align:center;
+}
+
+.summary-card h3{
+font-weight:bold;
+}
+
+.form-card{
+padding:25px;
+margin-top:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h2><i class="fa-solid fa-chart-line"></i> SMART FINANCE INSIGHTS</h2>
+
+<h4>Investment Portfolio Management</h4>
+
+<p>Manage and track your investments professionally.</p>
+
+</div>
+
+<div class="row mt-4">
+
+<div class="col-md-2">
+<div class="card summary-card">
+<h6>Total Investment</h6>
+<h3>₹ {{ total_investment }}</h3>
+</div>
+</div>
+
+<div class="col-md-2">
+<div class="card summary-card">
+<h6>Current Value</h6>
+<h3>₹ {{ total_current }}</h3>
+</div>
+</div>
+
+<div class="col-md-2">
+<div class="card summary-card">
+<h6>Profit</h6>
+<h3>₹ {{ total_profit }}</h3>
+</div>
+</div>
+
+<div class="col-md-2">
+<div class="card summary-card">
+<h6>ROI</h6>
+<h3>{{ overall_roi }}%</h3>
+</div>
+</div>
+
+<div class="col-md-2">
+<div class="card summary-card">
+<h6>Total Assets</h6>
+<h3>{{ total_assets }}</h3>
+</div>
+</div>
+
+</div>
+
+<div class="card form-card mt-4">
+
+<h3><i class="fa-solid fa-wallet"></i> Add New Investment</h3>
+
+<form method="POST">
+
+<div class="row">
+
+<div class="col-md-4">
+<label>Asset Type</label>
+<select class="form-control" name="asset">
+<option>Stocks</option>
+<option>Mutual Fund</option>
+<option>Gold</option>
+<option>Fixed Deposit</option>
+<option>Crypto</option>
+</select>
+</div>
+
+<div class="col-md-4">
+<label>Investment Name</label>
+<input type="text" class="form-control" name="investment_name" required>
+</div>
+
+<div class="col-md-4">
+<label>Purchase Date</label>
+<input type="date" class="form-control" name="purchase_date" required>
+</div>
+
+</div>
+
+<br>
+
+<div class="row">
+
+<div class="col-md-4">
+<label>Invested Amount</label>
+<input type="number" class="form-control" name="invested_amount" required>
+</div>
+
+<div class="col-md-4">
+<label>Current Value</label>
+<input type="number" class="form-control" name="current_value" required>
+</div>
+
+<div class="col-md-4">
+
+<label>&nbsp;</label>
+
+<button type="submit" class="btn btn-primary w-100">
+
+<i class="fa-solid fa-plus"></i>
+
+Add Investment
+
+</button>
+
+</div>
+
+</div>
+
+</form>
+
+</div>
+<br>
+
+<div class="card p-4">
+
+<div class="row mb-3">
+
+<div class="col-md-9">
+
+<form method="GET">
+
+<input
+type="text"
+class="form-control"
+name="search"
+placeholder="🔍 Search Investment Name">
+
+</div>
+
+<div class="col-md-3">
+
+<button class="btn btn-success w-100">
+
+Search
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+<h3>
+
+<i class="fa-solid fa-table"></i>
+
+Investment Portfolio
+
+</h3>
+
+<div class="mb-3">
+
+<a href="/download_pdf" class="btn btn-danger">
+📄 Download PDF
+</a>
+
+<a href="/download_excel" class="btn btn-success">
+📊 Download Excel
+</a>
+
+</div>
+
+<table class="table table-bordered table-hover mt-3">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>Asset</th>
+
+<th>Investment</th>
+
+<th>Purchase Date</th>
+
+<th>Invested</th>
+
+<th>Current</th>
+
+<th>Profit/Loss</th>
+
+<th>ROI %</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% if investments|length==0 %}
+
+<tr>
+
+<td colspan="8" class="text-center text-danger">
+
+No Investments Found
+
+</td>
+
+</tr>
+
+{% endif %}
+
+{% for i in investments %}
+
+<tr>
+
+<td>{{ i.asset }}</td>
+
+<td>{{ i.investment_name }}</td>
+
+<td>{{ i.purchase_date }}</td>
+
+<td>₹ {{ i.invested_amount }}</td>
+
+<td>₹ {{ i.current_value }}</td>
+
+<td>
+
+{% set profit=i.current_value-i.invested_amount %}
+
+{% if profit>=0 %}
+
+<span class="text-success fw-bold">
+
++ ₹ {{ profit }}
+
+</span>
+
+{% else %}
+
+<span class="text-danger fw-bold">
+
+₹ {{ profit }}
+
+</span>
+
+{% endif %}
+
+</td>
+
+<td>
+
+{% if i.invested_amount>0 %}
+
+{{ "%.2f"|format(((i.current_value-i.invested_amount)/i.invested_amount)*100) }} %
+
+{% else %}
+
+0 %
+
+{% endif %}
+
+</td>
+
+<td>
+
+<a href="/view_investment/{{ i.id }}"
+class="btn btn-info btn-sm">
+
+View
+
+</a>
+
+<a href="/edit_investment/{{ i.id }}"
+class="btn btn-warning btn-sm">
+
+Edit
+
+</a>
+
+<a href="/delete_investment/{{ i.id }}"
+class="btn btn-danger btn-sm"
+onclick="return confirm('Delete this Investment?')">
+
+Delete
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+<br>
+
+<div class="row">
+
+<div class="col-md-4">
+
+<div class="card p-3 text-center">
+
+<h5>📈 Portfolio Status</h5>
+
+<h3 class="text-success">Healthy</h3>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card p-3 text-center">
+
+<h5>💰 Total Profit</h5>
+
+<h3 class="text-primary">
+
+₹ {{ total_profit }}
+
+</h3>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card p-3 text-center">
+
+<h5>📊 Overall ROI</h5>
+
+<h3 class="text-warning">
+
+{{ overall_roi }} %
+
+</h3>
+
+</div>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="card p-4">
+
+<h4>
+
+<i class="fa-solid fa-circle-info"></i>
+
+Portfolio Summary
+
+</h4>
+
+<p>
+
+This module helps you manage all your investments in one place.
+You can add, edit, delete and monitor your investment performance,
+profit/loss and return on investment.
+
+</p>
+
+</div>
+
+<br>
+
+<footer class="text-center text-muted mb-4">
+
+<hr>
+
+<p>
+
+© 2026 Smart Finance Insights
+
+</p>
+
+<p>
+
+Investment Portfolio Management System
+
+</p>
+
+</footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

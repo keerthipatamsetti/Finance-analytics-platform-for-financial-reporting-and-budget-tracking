@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Asset Allocation & Return Calculation</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+body{
+background:#eef3f8;
+font-family:Arial,sans-serif;
+}
+
+.header{
+background:linear-gradient(90deg,#0d6efd,#20c997);
+color:white;
+padding:25px;
+border-radius:15px;
+margin-top:20px;
+margin-bottom:25px;
+}
+
+.card{
+border:none;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.summary{
+padding:20px;
+text-align:center;
+}
+
+.summary h3{
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h2>📊 Asset Allocation & Return Calculation</h2>
+
+<p>Analyze your investment performance and portfolio distribution.</p>
+
+</div>
+
+<div class="row">
+
+<div class="col-md-3">
+
+<div class="card summary">
+
+<h6>Total Investment</h6>
+
+<h3>₹ {{ total_investment }}</h3>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card summary">
+
+<h6>Current Value</h6>
+
+<h3>₹ {{ total_current }}</h3>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card summary">
+
+<h6>Total Profit</h6>
+
+<h3>₹ {{ total_profit }}</h3>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card summary">
+
+<h6>Overall ROI</h6>
+
+<h3>{{ overall_roi }}%</h3>
+
+</div>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<div class="card p-4">
+
+<h4>Asset Allocation</h4>
+
+<canvas id="allocationChart"></canvas>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="card p-4">
+
+<h4>Asset Distribution</h4>
+
+<table class="table table-bordered">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>Asset</th>
+
+<th>Current Value</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for i in investments %}
+
+<tr>
+
+<td>{{ i.asset }}</td>
+
+<td>₹ {{ i.current_value }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+<br>
+
+<div class="row">
+
+<div class="col-md-4">
+
+<div class="card p-3 text-center">
+
+<h5>📈 Portfolio Performance</h5>
+
+<h2 class="text-success">
+
+{% if overall_roi >= 20 %}
+Excellent
+{% elif overall_roi >= 10 %}
+Good
+{% else %}
+Needs Improvement
+{% endif %}
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card p-3 text-center">
+
+<h5>💹 Return Analysis</h5>
+
+<h2 class="text-primary">
+
+{{ overall_roi }} %
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card p-3 text-center">
+
+<h5>💰 Net Profit</h5>
+
+<h2 class="text-warning">
+
+₹ {{ total_profit }}
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="card p-4">
+
+<h4>Portfolio Summary</h4>
+
+<p>
+
+✔ Total Investment : ₹ {{ total_investment }}
+
+</p>
+
+<p>
+
+✔ Current Portfolio Value : ₹ {{ total_current }}
+
+</p>
+
+<p>
+
+✔ Total Profit : ₹ {{ total_profit }}
+
+</p>
+
+<p>
+
+✔ Overall Return : {{ overall_roi }} %
+
+</p>
+
+</div>
+
+<br>
+
+<script>
+
+const ctx=document.getElementById('allocationChart');
+
+new Chart(ctx,{
+
+type:'pie',
+
+data:{
+
+labels:{{ asset_labels|tojson }},
+
+datasets:[{
+
+data:{{ asset_values|tojson }}
+
+}]
+
+}
+
+});
+
+</script>
+
+<br>
+
+<div class="text-center">
+
+<a href="/dashboard" class="btn btn-primary">
+
+⬅ Back to Dashboard
+
+</a>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Budget</title>
+</head>
+
+<body>
+
+<h2>Edit Budget</h2>
+
+<form method="POST">
+
+    <label>Category</label><br>
+    <input type="text" name="category" value="{{ budget.category }}"><br><br>
+
+    <label>Amount</label><br>
+    <input type="number" name="amount" value="{{ budget.amount }}"><br><br>
+
+    <label>Month</label><br>
+    <input type="text" name="month" value="{{ budget.month }}"><br><br>
+
+    <button type="submit">Update Budget</button>
+
+</form>
+
+</body>
+</html>

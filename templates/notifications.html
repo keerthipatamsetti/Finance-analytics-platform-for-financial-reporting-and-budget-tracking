@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Alerts & Notifications</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+    background:#f4f7fb;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+.card{
+    border:none;
+    border-radius:18px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.table th{
+    background:#0d6efd;
+    color:white;
+}
+
+.badge{
+    font-size:14px;
+    padding:8px 14px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+<h2 class="text-center mb-4">
+🔔 Alerts & Notification System
+</h2>
+
+<div class="card p-4">
+
+<table class="table table-bordered table-hover text-center">
+
+<thead>
+
+<tr>
+
+<th>Notification Type</th>
+<th>Message</th>
+<th>Priority</th>
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for n in notifications %}
+
+<tr>
+
+<td>{{ n.notification_type }}</td>
+
+<td>{{ n.message }}</td>
+
+<td>
+
+{% if n.priority=="High" %}
+<span class="badge bg-danger">High</span>
+
+{% elif n.priority=="Medium" %}
+<span class="badge bg-warning text-dark">Medium</span>
+
+{% else %}
+<span class="badge bg-success">Low</span>
+{% endif %}
+
+</td>
+
+<td>
+
+{% if n.status=="Active" %}
+<span class="badge bg-success">Active</span>
+
+{% elif n.status=="Pending" %}
+<span class="badge bg-warning text-dark">Pending</span>
+
+{% else %}
+<span class="badge bg-secondary">Completed</span>
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+<hr class="my-4">
+
+<h4 class="mb-3">➕ Add Notification</h4>
+
+<form method="POST">
+
+<div class="row">
+
+<div class="col-md-3">
+<label>Notification Type</label>
+<select name="notification_type" class="form-control">
+
+<option>Budget Alert</option>
+<option>Bill Reminder</option>
+<option>Savings Goal</option>
+<option>Investment Alert</option>
+<option>Low Balance</option>
+
+</select>
+</div>
+
+<div class="col-md-4">
+<label>Message</label>
+<input type="text"
+name="message"
+class="form-control"
+placeholder="Enter Notification"
+required>
+</div>
+
+<div class="col-md-2">
+<label>Priority</label>
+
+<select name="priority" class="form-control">
+
+<option>High</option>
+<option>Medium</option>
+<option>Low</option>
+
+</select>
+
+</div>
+
+<div class="col-md-2">
+<label>Status</label>
+
+<select name="status" class="form-control">
+
+<option>Active</option>
+<option>Pending</option>
+<option>Completed</option>
+
+</select>
+
+</div>
+
+<div class="col-md-1 d-flex align-items-end">
+
+<button class="btn btn-primary w-100">
+Add
+</button>
+
+</div>
+
+</div>
+
+</form>
+
+<br>
+
+<div class="row">
+
+<div class="col-md-3">
+
+<div class="card text-center p-3">
+
+<h6>⚠ Budget Alerts</h6>
+
+<h3 class="text-danger">
+{{ notifications|length }}
+</h3>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card text-center p-3">
+
+<h6>📅 Bill Reminders</h6>
+
+<h3 class="text-warning">
+{{ notifications|length }}
+</h3>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card text-center p-3">
+
+<h6>🎯 Savings Goals</h6>
+
+<h3 class="text-success">
+{{ notifications|length }}
+</h3>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card text-center p-3">
+
+<h6>📈 Investment Alerts</h6>
+
+<h3 class="text-primary">
+{{ notifications|length }}
+</h3>
+
+</div>
+
+</div>
+
+<br><br>
+
+<div class="text-center mt-4">
+
+<a href="/dashboard" class="btn btn-primary">
+Dashboard
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

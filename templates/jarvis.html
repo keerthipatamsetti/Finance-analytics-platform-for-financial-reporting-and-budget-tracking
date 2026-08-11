@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JARVIS AI Financial Assistant</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/jarvis.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<div class="sidebar">
+
+    <div class="brand">
+        <div class="brand-icon">
+            <i class="fas fa-robot"></i>
+        </div>
+
+        <div>
+            <h4>JARVIS</h4>
+            <small>Smart Finance AI</small>
+        </div>
+    </div>
+
+    <hr>
+
+    <p class="menu-title">MAIN</p>
+
+    <a href="/dashboard">
+        <i class="fas fa-home"></i>
+        <span>Dashboard</span>
+    </a>
+
+    <a href="/income">
+        <i class="fas fa-wallet"></i>
+        <span>Income</span>
+    </a>
+
+    <a href="/expense">
+        <i class="fas fa-money-bill-wave"></i>
+        <span>Expense</span>
+    </a>
+
+    <a href="/transactions">
+        <i class="fas fa-receipt"></i>
+        <span>Transactions</span>
+    </a>
+
+    <a href="/budget">
+        <i class="fas fa-chart-pie"></i>
+        <span>Budget</span>
+    </a>
+
+    <a href="/investment">
+        <i class="fas fa-chart-line"></i>
+        <span>Investments</span>
+    </a>
+
+    <a href="/asset_allocation">
+        <i class="fas fa-chart-simple"></i>
+        <span>Asset Allocation</span>
+    </a>
+
+    <a href="/portfolio_analytics">
+        <i class="fas fa-briefcase"></i>
+        <span>Portfolio Analytics</span>
+    </a>
+
+    <a href="/financial_goals">
+        <i class="fas fa-bullseye"></i>
+        <span>Financial Goals</span>
+    </a>
+
+    <p class="menu-title">ANALYTICS</p>
+
+    <a href="/spending_analysis">
+        <i class="fas fa-chart-column"></i>
+        <span>Spending Analysis</span>
+    </a>
+
+    <a href="/budget_recommendation">
+        <i class="fas fa-lightbulb"></i>
+        <span>Budget Recommendation</span>
+    </a>
+
+    <a href="/financial_health">
+        <i class="fas fa-heart"></i>
+        <span>Financial Health</span>
+    </a>
+
+    <a href="/reports">
+        <i class="fas fa-file-lines"></i>
+        <span>Reports</span>
+    </a>
+
+    <a href="/ai_insights">
+        <i class="fas fa-brain"></i>
+        <span>AI Insights</span>
+    </a>
+
+    <p class="menu-title">SYSTEM</p>
+
+    <a href="/notifications">
+        <i class="fas fa-bell"></i>
+        <span>Notifications</span>
+    </a>
+
+    <a href="/chat_history">
+        <i class="fas fa-history"></i>
+        <span>Chat History</span>
+    </a>
+
+    <a href="/profile">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+    </a>
+
+    <a href="/settings">
+        <i class="fas fa-cog"></i>
+        <span>Settings</span>
+    </a>
+
+    <a href="/logout" class="logout-link">
+        <i class="fas fa-right-from-bracket"></i>
+        <span>Logout</span>
+    </a>
+
+</div>
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="main">
+
+    <!-- TOPBAR -->
+
+    <div class="topbar">
+
+        <div>
+            <h2>
+                <i class="fas fa-robot"></i>
+                JARVIS AI Financial Assistant
+            </h2>
+
+            <p>
+                AI-powered personal financial intelligence
+            </p>
+        </div>
+
+        <div class="top-actions">
+
+            <a href="/notifications">
+                <i class="fas fa-bell"></i>
+            </a>
+
+            <a href="/profile">
+                <i class="fas fa-user-circle"></i>
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= SUMMARY CARDS ================= -->
+
+    <div class="summary-grid">
+
+        <div class="summary-card income-card">
+
+            <div class="summary-icon">
+                <i class="fas fa-wallet"></i>
+            </div>
+
+            <div>
+                <p>Total Income</p>
+                <h3 id="incomeCard">₹0</h3>
+            </div>
+
+        </div>
+
+
+        <div class="summary-card expense-card">
+
+            <div class="summary-icon">
+                <i class="fas fa-money-bill-wave"></i>
+            </div>
+
+            <div>
+                <p>Total Expense</p>
+                <h3 id="expenseCard">₹0</h3>
+            </div>
+
+        </div>
+
+
+        <div class="summary-card savings-card">
+
+            <div class="summary-icon">
+                <i class="fas fa-piggy-bank"></i>
+            </div>
+
+            <div>
+                <p>Total Savings</p>
+                <h3 id="savingCard">₹0</h3>
+            </div>
+
+        </div>
+
+
+        <div class="summary-card health-card">
+
+            <div class="summary-icon">
+                <i class="fas fa-heart"></i>
+            </div>
+
+            <div>
+                <p>Financial Health</p>
+                <h3 id="healthCard">0/100</h3>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= JARVIS AREA ================= -->
+
+    <div class="jarvis-layout">
+
+        <!-- CHAT -->
+
+        <div class="chat-panel">
+
+            <div class="panel-header">
+
+                <div class="jarvis-title">
+
+                    <div class="online-dot"></div>
+
+                    <div>
+                        <h4>Chat with JARVIS</h4>
+                        <small>AI Financial Assistant • Online</small>
+                    </div>
+
+                </div>
+
+                <span class="ai-badge">
+                    AI
+                </span>
+
+            </div>
+
+
+            <!-- CHAT BOX -->
+
+            <div id="chatBox" class="chat-box">
+
+                <div class="bot-message">
+
+                    <div class="message-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+
+                    <div class="message-content">
+
+                        <strong>JARVIS</strong>
+
+                        <p>
+                            Hello! 👋 I'm JARVIS, your personal
+                            financial assistant.
+                        </p>
+
+                        <p>
+                            Ask me anything about your
+                            income, expenses, savings,
+                            budget, investments, ROI or
+                            financial health.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- INPUT -->
+
+            <div class="chat-input-area">
+
+                <input
+                    type="text"
+                    id="question"
+                    placeholder="Ask JARVIS about your finances..."
+                    autocomplete="off"
+                >
+
+                <button id="mic" class="voice-btn">
+                    <i class="fas fa-microphone"></i>
+                </button>
+
+                <button
+                    class="send-btn"
+                    onclick="sendMessage()">
+
+                    <i class="fas fa-paper-plane"></i>
+
+                </button>
+
+            </div>
+
+
+            <div class="suggestion-row">
+
+                <button onclick="askSuggestion('Show my income')">
+                    💰 Income
+                </button>
+
+                <button onclick="askSuggestion('Show my expenses')">
+                    💸 Expenses
+                </button>
+
+                <button onclick="askSuggestion('Financial health')">
+                    ❤️ Health
+                </button>
+
+                <button onclick="askSuggestion('Investment report')">
+                    📈 Investment
+                </button>
+
+                <button onclick="askSuggestion('Budget summary')">
+                    💰 Budget
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= RIGHT PANEL ================= -->
+
+        <div class="right-panel">
+
+
+            <!-- SMART TIPS -->
+
+            <div class="side-card">
+
+                <div class="side-card-title blue">
+
+                    <i class="fas fa-lightbulb"></i>
+
+                    Smart Financial Tips
+
+                </div>
+
+                <div class="side-card-body">
+
+                    <ul id="tipsList">
+
+                        <li>
+                            Ask JARVIS for financial advice.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- ALERTS -->
+
+            <div class="side-card">
+
+                <div class="side-card-title red">
+
+                    <i class="fas fa-triangle-exclamation"></i>
+
+                    Financial Alerts
+
+                </div>
+
+                <div class="side-card-body">
+
+                    <ul id="alertList">
+
+                        <li>
+                            No alerts available.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUICK QUESTIONS -->
+
+            <div class="side-card">
+
+                <div class="side-card-title green">
+
+                    <i class="fas fa-comments"></i>
+
+                    Quick Questions
+
+                </div>
+
+                <div class="side-card-body">
+
+                    <button
+                        onclick="askSuggestion('What is my total income and total expense?')">
+                        Income & Expense
+                    </button>
+
+                    <button
+                        onclick="askSuggestion('How much money did I save?')">
+                        Savings
+                    </button>
+
+                    <button
+                        onclick="askSuggestion('Am I overspending?')">
+                        Overspending
+                    </button>
+
+                    <button
+                        onclick="askSuggestion('What is my overall ROI?')">
+                        ROI
+                    </button>
+
+                    <button
+                        onclick="askSuggestion('Give me financial advice')">
+                        Financial Advice
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= CHART + STATISTICS ================= -->
+
+    <div class="dashboard-grid">
+
+        <div class="chart-card">
+
+            <div class="card-title">
+
+                <h4>
+                    <i class="fas fa-chart-column"></i>
+                    Financial Overview
+                </h4>
+
+            </div>
+
+            <div class="chart-container">
+
+                <canvas id="financeChart"></canvas>
+
+            </div>
+
+        </div>
+
+
+        <div class="statistics-card">
+
+            <div class="card-title">
+
+                <h4>
+                    <i class="fas fa-chart-line"></i>
+                    Quick Statistics
+                </h4>
+
+            </div>
+
+            <div class="stats-list">
+
+                <div>
+                    <span>Investment</span>
+                    <strong id="investmentCard">₹0</strong>
+                </div>
+
+                <div>
+                    <span>Current Value</span>
+                    <strong id="currentValueCard">₹0</strong>
+                </div>
+
+                <div>
+                    <span>ROI</span>
+                    <strong id="roiCard">0%</strong>
+                </div>
+
+                <div>
+                    <span>Recommended Budget</span>
+                    <strong id="budgetCard">₹0</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= CHAT ACTIONS ================= -->
+
+    <div class="chat-actions">
+
+        <a href="/download_chat_pdf"
+           class="action-btn pdf">
+
+            <i class="fas fa-file-pdf"></i>
+            Download PDF
+
+        </a>
+
+        <a href="/download_chat"
+           class="action-btn txt">
+
+            <i class="fas fa-file-lines"></i>
+            Download TXT
+
+        </a>
+
+        <a href="/chat_history"
+           class="action-btn history">
+
+            <i class="fas fa-history"></i>
+            Chat History
+
+        </a>
+
+        <a href="/clear_chat"
+           class="action-btn clear">
+
+            <i class="fas fa-trash"></i>
+            Clear Chat
+
+        </a>
+
+    </div>
+
+
+    <!-- ================= VOICE STATUS ================= -->
+
+    <div class="voice-status">
+
+        <i class="fas fa-microphone"></i>
+
+        <span>
+            Voice Status:
+        </span>
+
+        <strong id="voiceStatus">
+            Click the microphone and start speaking.
+        </strong>
+
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            🤖 JARVIS AI Financial Assistant
+        </p>
+
+        <small>
+            Smart Finance Insights • Flask • Bootstrap • Chart.js
+        </small>
+
+    </footer>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='js/jarvis.js') }}"></script>
+
+</body>
+
+</html>

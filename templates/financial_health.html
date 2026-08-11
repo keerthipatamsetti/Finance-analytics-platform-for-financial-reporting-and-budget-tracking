@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Financial Health</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+background:#f4f7fb;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+.card{
+border:none;
+border-radius:15px;
+box-shadow:0 4px 12px rgba(0,0,0,.1);
+}
+
+.score{
+font-size:60px;
+font-weight:bold;
+color:#198754;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+<h2 class="text-center mb-4">
+Financial Health Dashboard
+</h2>
+
+<div class="row">
+
+<div class="col-md-3">
+
+<div class="card p-3 text-center">
+
+<h5>Total Income</h5>
+
+<h3 class="text-success">
+₹{{ total_income }}
+</h3>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card p-3 text-center">
+
+<h5>Total Expense</h5>
+
+<h3 class="text-danger">
+₹{{ total_expense }}
+</h3>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card p-3 text-center">
+
+<h5>Savings</h5>
+
+<h3 class="text-primary">
+₹{{ savings }}
+</h3>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card p-3 text-center">
+
+<h5>Status</h5>
+
+<h3 class="text-warning">
+{{ status }}
+</h3>
+
+</div>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="card p-4 text-center">
+
+<h3>Financial Health Score</h3>
+
+<div class="score">
+{{ score }}/100
+</div>
+
+<div class="progress" style="height:30px;">
+
+<div class="progress-bar bg-success"
+style="width:{{ score }}%">
+
+{{ score }}%
+
+</div>
+
+</div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-6">
+
+        <div class="card p-4">
+
+            <h4>Financial Metrics</h4>
+
+            <table class="table table-bordered">
+
+                <tr>
+                    <th>Metric</th>
+                    <th>Value</th>
+                </tr>
+
+                <tr>
+                    <td>Monthly Income</td>
+                    <td>₹{{ total_income }}</td>
+                </tr>
+
+                <tr>
+                    <td>Monthly Expense</td>
+                    <td>₹{{ total_expense }}</td>
+                </tr>
+
+                <tr>
+                    <td>Monthly Savings</td>
+                    <td>₹{{ savings }}</td>
+                </tr>
+
+                <tr>
+                    <td>Financial Score</td>
+                    <td>{{ score }}/100</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="card p-4">
+
+            <h4>Health Status</h4>
+
+            <h2 class="text-success">
+                {{ status }}
+            </h2>
+
+            <div class="progress" style="height:30px;">
+
+                <div class="progress-bar bg-success"
+                     style="width:{{ score }}%;">
+
+                    {{ score }}%
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <h5 class="text-muted">
+                Your financial health is calculated based on your income, expenses and savings.
+            </h5>
+
+        </div>
+
+    </div>
+
+</div>
+
+<br>
+
+<br>
+
+<div class="card p-4">
+
+<h4>Suggestions</h4>
+
+<ul>
+
+{% if score >= 90 %}
+
+<li>Excellent financial management.</li>
+<li>Continue investing regularly.</li>
+
+{% elif score >= 70 %}
+
+<li>Your financial health is good.</li>
+<li>Increase savings every month.</li>
+
+{% elif score >= 50 %}
+
+<li>Reduce unnecessary expenses.</li>
+<li>Track your monthly budget carefully.</li>
+
+{% else %}
+
+<li>Your financial health needs improvement.</li>
+<li>Cut unnecessary spending.</li>
+<li>Build an emergency fund.</li>
+
+{% endif %}
+
+</ul>
+
+</div>
+
+<br>
+
+<div class="row mt-4">
+
+    <div class="col-md-6">
+
+        <div class="card p-4">
+
+            <h4>Income vs Expense</h4>
+
+            <canvas id="incomeExpenseChart"></canvas>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="card p-4">
+
+            <h4>Savings Distribution</h4>
+
+            <canvas id="savingsChart"></canvas>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+new Chart(document.getElementById("incomeExpenseChart"),{
+
+type:"bar",
+
+data:{
+
+labels:["Income","Expense"],
+
+datasets:[{
+
+label:"Amount",
+
+data:[
+{{ total_income }},
+{{ total_expense }}
+]
+
+}]
+
+}
+
+});
+
+new Chart(document.getElementById("savingsChart"),{
+
+type:"doughnut",
+
+data:{
+
+labels:["Savings","Expenses"],
+
+datasets:[{
+
+data:[
+{{ savings }},
+{{ total_expense }}
+]
+
+}]
+
+}
+
+});
+
+</script>
+
+<div class="row mt-4">
+
+    <div class="col-md-6">
+
+        <div class="card p-4">
+
+            <h4>AI Financial Insights</h4>
+
+            <ul class="list-group">
+
+                {% if score >= 90 %}
+
+                <li class="list-group-item text-success">
+                    ✔ Excellent financial health.
+                </li>
+
+                <li class="list-group-item">
+                    ✔ Continue your current investment strategy.
+                </li>
+
+                {% elif score >= 70 %}
+
+                <li class="list-group-item text-primary">
+                    ✔ Your finances are stable.
+                </li>
+
+                <li class="list-group-item">
+                    ✔ Increase monthly savings by 10%.
+                </li>
+
+                {% else %}
+
+                <li class="list-group-item text-danger">
+                    ✔ Reduce unnecessary expenses.
+                </li>
+
+                <li class="list-group-item">
+                    ✔ Prepare an emergency fund.
+                </li>
+
+                {% endif %}
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="card p-4">
+
+            <h4>Risk Analysis</h4>
+
+            <table class="table table-bordered">
+
+                <tr>
+                    <th>Indicator</th>
+                    <th>Status</th>
+                </tr>
+
+                <tr>
+                    <td>Savings</td>
+                    <td>{{ status }}</td>
+                </tr>
+
+                <tr>
+                    <td>Expense Control</td>
+                    <td>
+                        {% if total_expense < total_income %}
+                            Good
+                        {% else %}
+                            High Risk
+                        {% endif %}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Financial Health</td>
+                    <td>{{ score }}/100</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<br>
+
+<div class="card p-4">
+
+    <h4>Financial Tips</h4>
+
+    <div class="alert alert-success">
+        ✔ Save at least 20% of your monthly income.
+    </div>
+
+    <div class="alert alert-warning">
+        ✔ Review your expenses every week.
+    </div>
+
+    <div class="alert alert-info">
+        ✔ Invest regularly for long-term growth.
+    </div>
+
+    <div class="alert alert-danger">
+        ✔ Avoid unnecessary spending and debt.
+    </div>
+
+</div>
+
+<br>
+<div class="card p-4 mt-4">
+
+<h4>Investment Performance Summary</h4>
+
+<table class="table table-hover table-bordered">
+
+<tr>
+<th>Performance Indicator</th>
+<th>Status</th>
+</tr>
+
+<tr>
+<td>Monthly Savings</td>
+<td class="text-success">
+₹{{ savings }}
+</td>
+</tr>
+
+<tr>
+<td>Income Level</td>
+<td class="text-primary">
+₹{{ total_income }}
+</td>
+</tr>
+
+<tr>
+<td>Expense Level</td>
+<td class="text-danger">
+₹{{ total_expense }}
+</td>
+</tr>
+
+<tr>
+<td>Financial Health</td>
+<td>
+{{ score }}/100
+</td>
+</tr>
+
+<tr>
+<td>Overall Status</td>
+<td>
+{{ status }}
+</td>
+</tr>
+
+</table>
+
+</div>
+
+<br>
+<div class="card p-4">
+
+<h4>Monthly Financial Checklist</h4>
+
+<div class="form-check">
+
+<input class="form-check-input" type="checkbox">
+
+<label class="form-check-label">
+Track all expenses
+</label>
+
+</div>
+
+<div class="form-check">
+
+<input class="form-check-input" type="checkbox">
+
+<label class="form-check-label">
+Save at least 20% income
+</label>
+
+</div>
+
+<div class="form-check">
+
+<input class="form-check-input" type="checkbox">
+
+<label class="form-check-label">
+Review investment portfolio
+</label>
+
+</div>
+
+<div class="form-check">
+
+<input class="form-check-input" type="checkbox">
+
+<label class="form-check-label">
+Update monthly budget
+</label>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="text-center">
+
+<a href="/dashboard" class="btn btn-primary">
+Dashboard
+</a>
+
+<a href="/budget_recommendation" class="btn btn-success">
+Budget Recommendation
+</a>
+
+<a href="/spending_analysis" class="btn btn-warning">
+Spending Analysis
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

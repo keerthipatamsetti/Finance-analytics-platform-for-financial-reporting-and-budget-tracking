@@ -1,0 +1,534 @@
+JARVIS AI FINANCIAL ASSISTANT
+==================================================
+
+Question: financial health
+Answer: Financial Health Score : 42/100
+Date: 05-08-2026 16:03
+--------------------------------------------------
+
+Question: investment report
+Answer: Investment ₹830000.0
+Current Value ₹1184250.0
+ROI 42.68%
+Date: 05-08-2026 16:03
+--------------------------------------------------
+
+Question: show my expenses
+Answer: Your total expense is ₹815000.
+Date: 05-08-2026 16:03
+--------------------------------------------------
+
+Question: show my income
+Answer: Your total income is ₹600000.
+Date: 05-08-2026 16:03
+--------------------------------------------------
+
+Question: budget summary
+Answer: Recommended Budget ₹300000
+Recommended Savings ₹120000
+Recommended Investment ₹180000
+Date: 05-08-2026 16:03
+--------------------------------------------------
+
+Question: which category has the highest expense?
+Answer: ☀️ Good Afternoon!
+
+I am Jarvis 🤖, your Smart Financial Assistant.
+You can ask me about Income, Expenses, Savings, Budget, Investments, ROI and Financial Health.
+Date: 05-08-2026 16:34
+--------------------------------------------------
+
+Question: which category has the highest expense?
+Answer: ☀️ Good Afternoon!
+
+I am Jarvis 🤖, your Smart Financial Assistant.
+You can ask me about Income, Expenses, Savings, Budget, Investments, ROI and Financial Health.
+Date: 05-08-2026 16:35
+--------------------------------------------------
+
+Question: investment report
+Answer: 📈 Investment Summary
+
+Total Investment : ₹830000.0
+Current Value : ₹1184250.0
+Profit/Loss : ₹354250.0
+ROI : 42.68%
+Date: 05-08-2026 16:35
+--------------------------------------------------
+
+Question: financial health
+Answer: ❤️ Financial Health Score : 42/100
+Status : Needs Improvement 🔴
+Date: 05-08-2026 16:35
+--------------------------------------------------
+
+Question: show my expenses
+Answer: 💸 Expense Summary
+
+Total Expense : ₹815000
+Expense Ratio : 135.83%
+Date: 05-08-2026 16:36
+--------------------------------------------------
+
+Question: budget summary
+Answer: 💰 Budget Recommendation
+
+Recommended Budget : ₹300000
+Recommended Savings : ₹120000
+Recommended Investment : ₹180000
+Date: 05-08-2026 16:36
+--------------------------------------------------
+
+Question: show my expenses
+Answer: 💸 Expense Summary
+
+Total Expense : ₹815000
+Expense Ratio : 135.83%
+Date: 05-08-2026 16:36
+--------------------------------------------------
+
+Question: financial health
+Answer: ❤️ Financial Health Score : 42/100
+Status : Needs Improvement 🔴
+Date: 06-08-2026 19:23
+--------------------------------------------------
+
+Question: show my income
+Answer: 💰 Income Summary
+
+Total Income : ₹600000
+
+Income data analyzed successfully.
+Date: 07-08-2026 14:20
+--------------------------------------------------
+
+Question: show my income
+Answer: 💰 Income Summary
+
+Total Income: ₹600000
+Date: 10-08-2026 14:38
+--------------------------------------------------
+
+Question: show my income
+Answer: 💰 Income Summary
+
+Total Income: ₹600000
+Date: 10-08-2026 14:42
+--------------------------------------------------
+
+Question: show my income
+Answer: 💰 Income Summary
+
+Total Income: ₹600000
+Date: 10-08-2026 14:42
+--------------------------------------------------
+
+Question: show my income
+Answer: 💰 Income Summary
+
+Total Income: ₹600000
+Date: 10-08-2026 14:43
+--------------------------------------------------
+
+Question: financial health
+Answer: ❤️ Financial Health
+
+Health Score: 42/100
+Status: Needs Improvement 🔴
+Date: 10-08-2026 14:43
+--------------------------------------------------
+
+Question: show my expenses
+Answer: 💸 Expense Summary
+
+Total Expense: ₹815000
+Expense Ratio: 135.83%
+Date: 10-08-2026 14:43
+--------------------------------------------------
+
+Question: investment report
+Answer: 📈 Investment Summary
+
+Total Investment: ₹830000.0
+Current Value: ₹1184250.0
+Profit/Loss: ₹354250.0
+ROI: 42.68%
+Date: 10-08-2026 14:43
+--------------------------------------------------
+
+Question: budget summary
+Answer: 💰 Budget Recommendation
+
+Recommended Budget: ₹300000
+Recommended Savings: ₹120000
+Recommended Investment: ₹180000
+Date: 10-08-2026 14:43
+--------------------------------------------------
+
+Question: show my income
+Answer: 💰 Income Summary
+
+Total Income: ₹600000
+Date: 10-08-2026 14:50
+--------------------------------------------------
+
+Question: Show my income
+Answer: 💰 <b>Income Summary</b><br><br>Total Income: <b>₹600,000.00</b><br><br>Your income data has been analyzed successfully.
+Date: 10-08-2026 15:05
+--------------------------------------------------
+
+Question: Show my expenses
+Answer: 💸 <b>Expense Summary</b><br><br>Total Expense: <b>₹815,000.00</b><br>Expense Ratio: <b>135.83%</b>
+Date: 10-08-2026 15:05
+--------------------------------------------------
+
+Question: Show my savings
+Answer: 💵 <b>Savings Summary</b><br><br>Total Savings: <b>₹-215,000.00</b><br>Savings Rate: <b>-35.83%</b>
+Date: 10-08-2026 15:05
+--------------------------------------------------
+
+Question: Financial health
+Answer: ❤️ <b>Financial Health</b><br><br>Health Score: <b>42/100</b><br>Status: <b>Needs Improvement 🔴</b>
+Date: 10-08-2026 15:05
+--------------------------------------------------
+
+Question: Investment report
+Answer: 📈 <b>Investment Summary</b><br><br>Total Investment: <b>₹830,000.00</b><br>Current Value: <b>₹1,184,250.00</b><br>Profit/Loss: <b>₹354,250.00</b><br>ROI: <b>42.68%</b>
+Date: 10-08-2026 15:05
+--------------------------------------------------
+
+Question: Budget summary
+Answer: 💰 <b>Budget Recommendation</b><br><br>Recommended Budget: <b>₹300,000.00</b><br>Recommended Savings: <b>₹120,000.00</b><br>Recommended Investment: <b>₹180,000.00</b><br><br>Recommended allocation: 50% expenses, 20% savings and 30% investment.
+Date: 10-08-2026 15:05
+--------------------------------------------------
+
+Question: Financial advice
+Answer: 💡 <b>Financial Advice</b><br><br>• Reduce unnecessary expenses.<br>• Try to save at least 20% of your income.<br>• Improve your financial planning.
+Date: 10-08-2026 15:06
+--------------------------------------------------
+
+Question: Show alerts
+Answer: 🚨 <b>Financial Alerts</b><br><br>🚨 Expenses are higher than income.<br>⚠️ Financial health score is low.
+Date: 10-08-2026 15:06
+--------------------------------------------------
+
+Question: am i spending more than i earn
+Answer: 💸 <b>Expense Summary</b><br><br>Total Expense: <b>₹815,000.00</b><br>Expense Ratio: <b>135.83%</b>
+Date: 10-08-2026 15:08
+--------------------------------------------------
+
+Question: dashboard summary
+Answer: 📊 **Your Financial Dashboard Summary**
+
+💰 Income: ₹600,000.00
+💸 Expense: ₹815,000.00
+💵 Savings: ₹-215,000.00
+📈 Investment: ₹830,000.00
+💼 Portfolio Value: ₹1,184,250.00
+💹 ROI: 42.68%
+❤️ Health Score: 42/100
+Date: 10-08-2026 16:12
+--------------------------------------------------
+
+Question: where am i spending the most money?
+Answer: 📊 **Highest Expense Category**
+
+Category: education fee
+Amount: ₹500,000.00
+
+This is the category where you are spending the most.
+Date: 10-08-2026 16:13
+--------------------------------------------------
+
+Question: show my income
+Answer: 🤖 **I can help you with your finances.**
+
+Try questions like:
+
+• What is my total income and total expense?
+• How much money did I save?
+• Am I spending more than I earn?
+• What is my financial health score?
+• Show me my complete financial summary.
+• Where am I spending the most money?
+• Which category has the lowest expense?
+• How much should I keep for my monthly budget?
+• How much should I save from my income?
+• How much should I invest according to my income?
+• Show my total investment and current portfolio value.
+• What is my investment profit or loss?
+• What is my overall ROI?
+• Which is my best investment?
+• Which investment is performing poorly?
+• Give me financial advice.
+• Do I have any financial alerts?
+Date: 10-08-2026 16:15
+--------------------------------------------------
+
+Question: show my expenses
+Answer: 🤖 **I can help you with your finances.**
+
+Try questions like:
+
+• What is my total income and total expense?
+• How much money did I save?
+• Am I spending more than I earn?
+• What is my financial health score?
+• Show me my complete financial summary.
+• Where am I spending the most money?
+• Which category has the lowest expense?
+• How much should I keep for my monthly budget?
+• How much should I save from my income?
+• How much should I invest according to my income?
+• Show my total investment and current portfolio value.
+• What is my investment profit or loss?
+• What is my overall ROI?
+• Which is my best investment?
+• Which investment is performing poorly?
+• Give me financial advice.
+• Do I have any financial alerts?
+Date: 10-08-2026 16:16
+--------------------------------------------------
+
+Question: financial health
+Answer: ❤️ **Financial Health Analysis**
+
+Health Score: 42/100
+Status: Needs Improvement 🔴
+
+💡 Your financial health needs improvement. Reduce unnecessary expenses and increase savings.
+Date: 10-08-2026 16:16
+--------------------------------------------------
+
+Question: investment report
+Answer: 📈 **Investment Summary**
+
+Total Investment: ₹830,000.00
+Current Portfolio Value: ₹1,184,250.00
+Profit/Loss: ₹354,250.00
+Overall ROI: 42.68%
+Date: 10-08-2026 16:16
+--------------------------------------------------
+
+Question: budget summary
+Answer: 🤖 **I can help you with your finances.**
+
+Try questions like:
+
+• What is my total income and total expense?
+• How much money did I save?
+• Am I spending more than I earn?
+• What is my financial health score?
+• Show me my complete financial summary.
+• Where am I spending the most money?
+• Which category has the lowest expense?
+• How much should I keep for my monthly budget?
+• How much should I save from my income?
+• How much should I invest according to my income?
+• Show my total investment and current portfolio value.
+• What is my investment profit or loss?
+• What is my overall ROI?
+• Which is my best investment?
+• Which investment is performing poorly?
+• Give me financial advice.
+• Do I have any financial alerts?
+Date: 10-08-2026 16:16
+--------------------------------------------------
+
+Question: financial advice
+Answer: 💡 **Personalized Financial Advice**
+
+🔴 Reduce unnecessary expenses because spending is above income.
+💵 Try to save at least 20% of your income.
+❤️ Improve your financial health by controlling expenses and increasing savings.
+Date: 10-08-2026 16:16
+--------------------------------------------------
+
+Question: show alerts
+Answer: 🚨 **Financial Alerts**
+
+🚨 Your expenses are higher than your income.
+⚠️ Your financial health score is low.
+⚠️ You currently have negative savings.
+Date: 10-08-2026 16:16
+--------------------------------------------------
+
+Question: show my savings
+Answer: 💵 **Savings Summary**
+
+Total Savings: ₹-215,000.00
+Savings Rate: -35.83%
+
+⚠️ Your savings are currently negative. Try reducing unnecessary expenses.
+Date: 10-08-2026 16:16
+--------------------------------------------------
+
+Question: show my expenses
+Answer: 🤖 **I can help you with your finances.**
+
+Try questions like:
+
+• What is my total income and total expense?
+• How much money did I save?
+• Am I spending more than I earn?
+• What is my financial health score?
+• Show me my complete financial summary.
+• Where am I spending the most money?
+• Which category has the lowest expense?
+• How much should I keep for my monthly budget?
+• How much should I save from my income?
+• How much should I invest according to my income?
+• Show my total investment and current portfolio value.
+• What is my investment profit or loss?
+• What is my overall ROI?
+• Which is my best investment?
+• Which investment is performing poorly?
+• Give me financial advice.
+• Do I have any financial alerts?
+Date: 10-08-2026 16:16
+--------------------------------------------------
+
+Question: dashboard summary
+Answer: 🤖 I understand financial questions, but I couldn't identify exactly what you need.
+
+Try asking about:
+
+💰 Income
+💸 Expenses
+💵 Savings
+📊 Spending
+❤️ Financial Health
+💰 Budget
+📈 Investments
+💹 ROI
+🎯 Financial Advice
+Date: 10-08-2026 16:32
+--------------------------------------------------
+
+Question: Show my income
+Answer: 💰 Income Summary
+
+Your total income is ₹600,000.00.
+Date: 10-08-2026 16:32
+--------------------------------------------------
+
+Question: where am i spending the most money?
+Answer: 📊 Highest Expense Category
+
+Category: education fee
+Amount: ₹500,000.00
+
+This is the category where you are spending the most.
+Date: 10-08-2026 16:32
+--------------------------------------------------
+
+Question: dashboard summary
+Answer: 🤖 I understand financial questions, but I couldn't identify exactly what you need.
+
+Try asking about:
+
+💰 Income
+💸 Expenses
+💵 Savings
+📊 Spending
+❤️ Financial Health
+💰 Budget
+📈 Investments
+💹 ROI
+🎯 Financial Advice
+Date: 10-08-2026 16:35
+--------------------------------------------------
+
+Question: dashboard summary
+Answer: 🤖 I understand financial questions, but I couldn't identify exactly what you need.
+
+Try asking about:
+
+💰 Income
+💸 Expenses
+💵 Savings
+📊 Spending
+❤️ Financial Health
+💰 Budget
+📈 Investments
+💹 ROI
+🎯 Financial Advice
+Date: 10-08-2026 16:35
+--------------------------------------------------
+
+Question: am i spending more than i earn
+Answer: 🚨 Yes, you are spending more than you earn.
+
+Income: ₹600,000.00
+Expense: ₹815,000.00
+Excess Spending: ₹215,000.00
+
+💡 Try reducing unnecessary expenses.
+Date: 10-08-2026 16:36
+--------------------------------------------------
+
+Question: Show my income
+Answer: 💰 Income Summary
+
+Your total income is ₹600,000.00.
+Date: 10-08-2026 16:36
+--------------------------------------------------
+
+Question: dashboard summary
+Answer: 📊 Complete Financial Summary
+
+💰 Income : ₹600,000.00
+💸 Expenses : ₹815,000.00
+💵 Savings : ₹-215,000.00
+📈 Investment : ₹830,000.00
+💼 Current Portfolio : ₹1,184,250.00
+💹 ROI : 42.68%
+❤️ Health Score : 42/100
+
+Date: 10-08-2026 17:06
+--------------------------------------------------
+
+Question: where am i spending the most money?
+Answer: 💸 Expense Summary
+
+Total Expense : ₹815,000.00
+Expense Ratio : 135.83%
+
+This shows how much of your income is being used for expenses.
+Date: 10-08-2026 17:06
+--------------------------------------------------
+
+Question: expense
+Answer: 💸 Expense Summary
+
+Total Expense : ₹815,000.00
+Expense Ratio : 135.83%
+
+This shows how much of your income is being used for expenses.
+Date: 10-08-2026 17:10
+--------------------------------------------------
+
+Question: Show my savings
+Answer: 💵 Savings Summary
+
+Total Savings : ₹-215,000.00
+Savings Rate : -35.83%
+
+⚠️ Your savings need improvement.
+Date: 10-08-2026 17:10
+--------------------------------------------------
+
+Question: dashboard summary
+Answer: 📊 Complete Financial Summary
+
+💰 Income : ₹600,000.00
+💸 Expenses : ₹815,000.00
+💵 Savings : ₹-215,000.00
+📈 Investment : ₹830,000.00
+💼 Current Portfolio : ₹1,184,250.00
+💹 ROI : 42.68%
+❤️ Health Score : 42/100
+
+Date: 10-08-2026 17:10
+--------------------------------------------------
+

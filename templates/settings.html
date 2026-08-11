@@ -1,0 +1,2026 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Settings - Smart Finance Insights</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f3f6fb;
+            font-family: "Segoe UI", sans-serif;
+            color: #263238;
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background: linear-gradient(180deg, #0d47a1, #1565c0);
+            padding: 20px 15px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .sidebar-brand {
+            color: white;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .sidebar-brand i {
+            font-size: 35px;
+            margin-bottom: 8px;
+        }
+
+        .sidebar-brand h3 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .sidebar-brand small {
+            opacity: 0.8;
+        }
+
+        .menu-title {
+            color: #bbdefb;
+            font-size: 11px;
+            font-weight: 700;
+            margin: 20px 10px 8px;
+            letter-spacing: 1px;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 13px;
+            margin-bottom: 5px;
+            color: white;
+            text-decoration: none;
+            border-radius: 9px;
+            transition: 0.2s;
+            font-size: 14px;
+        }
+
+        .sidebar a i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: rgba(255,255,255,0.18);
+        }
+
+        .logout-link {
+            margin-top: 20px;
+            background: rgba(255,0,0,0.15);
+        }
+
+        /* ================= MAIN ================= */
+
+        .main {
+            margin-left: 250px;
+            padding: 25px;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .page-header h2 {
+            margin: 0;
+            font-weight: 700;
+            color: #0d47a1;
+        }
+
+        .page-header p {
+            margin: 7px 0 0;
+            color: #777;
+        }
+
+        /* ================= CARDS ================= */
+
+        .settings-card {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 22px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .settings-card-header {
+            padding: 15px 20px;
+            color: white;
+            font-weight: 600;
+            font-size: 17px;
+        }
+
+        .settings-card-body {
+            padding: 22px;
+        }
+
+        .blue {
+            background: #0d6efd;
+        }
+
+        .red {
+            background: #dc3545;
+        }
+
+        .green {
+            background: #198754;
+        }
+
+        .orange {
+            background: #f59f00;
+        }
+
+        .dark {
+            background: #343a40;
+        }
+
+        .info {
+            background: #0dcaf0;
+        }
+
+        /* ================= INPUTS ================= */
+
+        .form-label {
+            font-weight: 600;
+        }
+
+        .form-control,
+        .form-select {
+            border-radius: 10px;
+            padding: 10px 12px;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.15rem rgba(13,110,253,0.15);
+        }
+
+        /* ================= BUTTONS ================= */
+
+        .action-btn {
+            border: none;
+            border-radius: 9px;
+            padding: 10px 18px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        /* ================= SWITCH ================= */
+
+        .form-switch {
+            padding-left: 2.7em;
+        }
+
+        .form-switch .form-check-input {
+            width: 2.5em;
+            height: 1.3em;
+            cursor: pointer;
+        }
+
+        /* ================= DANGER ================= */
+
+        .danger-zone {
+            border: 2px solid #dc3545;
+        }
+
+        /* ================= SAVE AREA ================= */
+
+        .save-area {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            margin-top: 25px;
+        }
+
+        /* ================= TOAST ================= */
+
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 768px) {
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                max-height: none;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 15px;
+            }
+
+            .sidebar a {
+                display: inline-flex;
+                width: auto;
+                margin-right: 4px;
+            }
+
+            .menu-title {
+                display: none;
+            }
+
+            .page-header h2 {
+                font-size: 22px;
+            }
+
+            .save-area .btn {
+                width: 100%;
+                margin: 5px 0 !important;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<div class="sidebar">
+
+    <div class="sidebar-brand">
+        <i class="fas fa-wallet"></i>
+        <h3>Smart Finance</h3>
+        <small>Insights</small>
+    </div>
+
+    <p class="menu-title">MAIN</p>
+
+    <a href="/dashboard">
+        <i class="fas fa-home"></i>
+        Dashboard
+    </a>
+
+    <a href="/income">
+        <i class="fas fa-wallet"></i>
+        Income
+    </a>
+
+    <a href="/expense">
+        <i class="fas fa-money-bill-wave"></i>
+        Expenses
+    </a>
+
+    <a href="/transactions">
+        <i class="fas fa-receipt"></i>
+        Transactions
+    </a>
+
+    <a href="/budget">
+        <i class="fas fa-chart-pie"></i>
+        Budget
+    </a>
+
+    <a href="/investment">
+        <i class="fas fa-chart-line"></i>
+        Investment
+    </a>
+
+    <a href="/asset_allocation">
+        <i class="fas fa-chart-simple"></i>
+        Asset Allocation
+    </a>
+
+    <a href="/portfolio_analytics">
+        <i class="fas fa-briefcase"></i>
+        Portfolio Analytics
+    </a>
+
+    <a href="/financial_goals">
+        <i class="fas fa-bullseye"></i>
+        Financial Goals
+    </a>
+
+    <p class="menu-title">ANALYTICS</p>
+
+    <a href="/spending_analysis">
+        <i class="fas fa-chart-column"></i>
+        Spending Analysis
+    </a>
+
+    <a href="/budget_recommendation">
+        <i class="fas fa-lightbulb"></i>
+        Budget Recommendation
+    </a>
+
+    <a href="/financial_health">
+        <i class="fas fa-heart"></i>
+        Financial Health
+    </a>
+
+    <a href="/reports">
+        <i class="fas fa-file-lines"></i>
+        Reports
+    </a>
+
+    <a href="/ai_insights">
+        <i class="fas fa-brain"></i>
+        AI Insights
+    </a>
+
+    <p class="menu-title">SYSTEM</p>
+
+    <a href="/notifications">
+        <i class="fas fa-bell"></i>
+        Notifications
+    </a>
+
+    <a href="/chat_history">
+        <i class="fas fa-history"></i>
+        Chat History
+    </a>
+
+    <a href="/profile">
+        <i class="fas fa-user"></i>
+        Profile
+    </a>
+
+    <a href="/settings" class="active">
+        <i class="fas fa-cog"></i>
+        Settings
+    </a>
+
+    <a href="/logout" class="logout-link">
+        <i class="fas fa-right-from-bracket"></i>
+        Logout
+    </a>
+
+</div>
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="main">
+
+    <!-- HEADER -->
+
+    <div class="page-header">
+
+        <h2>
+            <i class="fas fa-cog"></i>
+            Settings
+        </h2>
+
+        <p>
+            Manage your Smart Finance Insights preferences and account settings.
+        </p>
+
+    </div>
+
+
+    <!-- ================= PROFILE ================= -->
+
+    <div class="settings-card">
+
+        <div class="settings-card-header blue">
+            <i class="fas fa-user"></i>
+            Profile Settings
+        </div>
+
+        <div class="settings-card-body">
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="fullName"
+                        class="form-control"
+                        value="{{ user.name if user else '' }}"
+                        placeholder="Enter your name">
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        class="form-control"
+                        value="{{ user.email if user else '' }}"
+                        placeholder="Enter email">
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="phone"
+                        class="form-control"
+                        placeholder="+91 XXXXXXXXXX">
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        City
+                    </label>
+
+                    <input
+                        type="text"
+                        id="city"
+                        class="form-control"
+                        placeholder="Enter city">
+
+                </div>
+
+            </div>
+
+            <button
+                type="button"
+                class="btn btn-success action-btn"
+                onclick="saveProfile()">
+
+                <i class="fas fa-save"></i>
+                Save Profile
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= CHANGE PASSWORD ================= -->
+
+    <div class="settings-card">
+
+        <div class="settings-card-header red">
+
+            <i class="fas fa-lock"></i>
+            Change Password
+
+        </div>
+
+        <div class="settings-card-body">
+
+            <div class="row">
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Current Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="currentPassword"
+                        class="form-control">
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        New Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="newPassword"
+                        class="form-control">
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Confirm Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        class="form-control">
+
+                </div>
+
+            </div>
+
+            <button
+                type="button"
+                class="btn btn-warning action-btn"
+                onclick="changePassword()">
+
+                <i class="fas fa-key"></i>
+                Update Password
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= EMAIL SETTINGS ================= -->
+
+    <div class="settings-card">
+
+        <div class="settings-card-header info">
+
+            <i class="fas fa-envelope"></i>
+            Email Settings
+
+        </div>
+
+        <div class="settings-card-body">
+
+            <div class="form-check form-switch mb-3">
+
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="monthlyReports"
+                    checked>
+
+                <label class="form-check-label"
+                       for="monthlyReports">
+
+                    Receive Monthly Financial Reports
+
+                </label>
+
+            </div>
+
+            <div class="form-check form-switch mb-3">
+
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="aiSuggestions"
+                    checked>
+
+                <label class="form-check-label"
+                       for="aiSuggestions">
+
+                    Receive AI Financial Suggestions
+
+                </label>
+
+            </div>
+
+            <div class="form-check form-switch">
+
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="promotionalEmails">
+
+                <label class="form-check-label"
+                       for="promotionalEmails">
+
+                    Receive Promotional Emails
+
+                </label>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= MOBILE SETTINGS ================= -->
+
+    <div class="settings-card">
+
+        <div class="settings-card-header green">
+
+            <i class="fas fa-mobile-screen"></i>
+            Mobile Settings
+
+        </div>
+
+        <div class="settings-card-body">
+
+            <div class="form-check form-switch mb-3">
+
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="smsNotifications"
+                    checked>
+
+                <label class="form-check-label"
+                       for="smsNotifications">
+
+                    SMS Notifications
+
+                </label>
+
+            </div>
+
+            <div class="form-check form-switch mb-3">
+
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="whatsappNotifications"
+                    checked>
+
+                <label class="form-check-label"
+                       for="whatsappNotifications">
+
+                    WhatsApp Notifications
+
+                </label>
+
+            </div>
+
+            <div class="form-check form-switch">
+
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="pushNotifications">
+
+                <label class="form-check-label"
+                       for="pushNotifications">
+
+                    App Push Notifications
+
+                </label>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= APPEARANCE ================= -->
+
+    <div class="settings-card">
+
+        <div class="settings-card-header dark">
+
+            <i class="fas fa-palette"></i>
+            Appearance Settings
+
+        </div>
+
+        <div class="settings-card-body">
+
+            <div class="form-check form-switch mb-4">
+
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="darkMode"
+                    onchange="toggleDarkMode()">
+
+                <label class="form-check-label"
+                       for="darkMode">
+
+                    🌙 Enable Dark Mode
+
+                </label>
+
+            </div>
+
+            <label class="form-label">
+                🎨 Theme Color
+            </label>
+
+            <select
+                id="themeColor"
+                class="form-select"
+                onchange="changeTheme()">
+
+                <option value="blue" selected>Blue</option>
+                <option value="green">Green</option>
+                <option value="purple">Purple</option>
+                <option value="orange">Orange</option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= LANGUAGE ================= -->
+
+    <div class="settings-card">
+
+        <div class="settings-card-header blue">
+
+            <i class="fas fa-language"></i>
+            Language Settings
+
+        </div>
+
+        <div class="settings-card-body">
+
+            <label class="form-label">
+                🌐 Select Language
+            </label>
+
+            <select
+                id="language"
+                class="form-select">
+
+                <option value="English" selected>
+                    English
+                </option>
+
+                <option value="Telugu">
+                    Telugu
+                </option>
+
+                <option value="Hindi">
+                    Hindi
+                </option>
+
+                <option value="Tamil">
+                    Tamil
+                </option>
+
+                <option value="Kannada">
+                    Kannada
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= CURRENCY ================= -->
+
+    <div class="settings-card">
+
+        <div class="settings-card-header green">
+
+            <i class="fas fa-money-bill-wave"></i>
+            Currency Settings
+
+        </div>
+
+        <div class="settings-card-body">
+
+            <label class="form-label">
+                💱 Default Currency
+            </label>
+
+            <select
+                id="currency"
+                class="form-select">
+
+                <option value="INR" selected>
+                    Indian Rupee (₹)
+                </option>
+
+                <option value="USD">
+                    US Dollar ($)
+                </option>
+
+                <option value="EUR">
+                    Euro (€)
+                </option>
+
+                <option value="GBP">
+                    Pound (£)
+                </option>
+
+                <option value="JPY">
+                    Yen (¥)
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+    <!-- ================= DATE & TIME ================= -->
+
+    <div class="settings-card">
+
+        <div class="settings-card-header orange">
+
+            <i class="fas fa-calendar"></i>
+            Date & Time Settings
+
+        </div>
+
+        <div class="settings-card-body">
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        📅 Date Format
+                    </label>
+
+                    <select
+                        id="dateFormat"
+                        class="form-select">
+
+                        <option value="DD/MM/YYYY" selected>
+                            DD/MM/YYYY
+                        </option>
+
+                        <option value="MM/DD/YYYY">
+                            MM/DD/YYYY
+                        </option>
+
+                        <option value="YYYY-MM-DD">
+                            YYYY-MM-DD
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        🕒 Time Format
+                    </label>
+
+                    <select
+                        id="timeFormat"
+                        class="form-select">
+
+                        <option value="24" selected>
+                            24 Hours
+                        </option>
+
+                        <option value="12">
+                            12 Hours
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= AI SETTINGS ================= -->
+
+    <div class="settings-card">
+
+        <div class="settings-card-header info">
+
+            <i class="fas fa-robot"></i>
+            AI Recommendation Settings
+
+        </div>
+
+        <div class="settings-card-body">
+
+            <div class="form-check form-switch mb-3">
+
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="enableAI"
+                    checked>
+
+                <label class="form-check-label"
+                       for="enableAI">
+
+                    Enable AI Financial Recommendations
+
+                </label>
+
+            </div>
+
+            <div class="form-check form-switch mb-3">
+
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="smartBudget"
+                    checked>
+
+                <label class="form-check-label"
+                       for="smartBudget">
+
+                    Enable Smart Budget Suggestions
+
+                </label>
+
+            </div>
+
+            <div class="form-check form-switch">
+
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="investmentPredictions"
+                    checked>
+
+                <label class="form-check-label"
+                       for="investmentPredictions">
+
+                    Enable Investment Predictions
+
+                </label>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= NOTIFICATION SETTINGS ================= -->
+
+    <div class="settings-card">
+
+        <div class="settings-card-header red">
+
+            <i class="fas fa-bell"></i>
+            Notification Preferences
+
+        </div>
+
+        <div class="settings-card-body">
+
+            <div class="form-check mb-3">
+
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="budgetAlerts"
+                    checked>
+
+                <label class="form-check-label"
+                       for="budgetAlerts">
+
+                    Budget Alerts
+
+                </label>
+
+            </div>
+
+            <div class="form-check mb-3">
+
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="investmentAlerts"
+                    checked>
+
+                <label class="form-check-label"
+                       for="investmentAlerts">
+
+                    Investment Alerts
+
+                </label>
+
+            </div>
+
+            <div class="form-check mb-3">
+
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="goalAlerts">
+
+                <label class="form-check-label"
+                       for="goalAlerts">
+
+                    Goal Achievement Alerts
+
+                </label>
+
+            </div>
+
+            <div class="form-check">
+
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="monthlyFinancialReport"
+                    checked>
+
+                <label class="form-check-label"
+                       for="monthlyFinancialReport">
+
+                    Monthly Financial Report
+
+                </label>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= BACKUP & RESTORE ================= -->
+
+    <div class="settings-card">
+
+        <div class="settings-card-header blue">
+
+            <i class="fas fa-database"></i>
+            Backup & Restore
+
+        </div>
+
+        <div class="settings-card-body">
+
+            <p class="text-muted">
+                Backup your finance data or restore a previous backup.
+            </p>
+
+            <button
+                type="button"
+                class="btn btn-success action-btn"
+                onclick="backupData()">
+
+                <i class="fas fa-download"></i>
+                Backup Data
+
+            </button>
+
+            <label
+                class="btn btn-warning action-btn ms-2">
+
+                <i class="fas fa-upload"></i>
+                Restore Backup
+
+                <input
+                    type="file"
+                    id="restoreFile"
+                    accept=".json"
+                    hidden
+                    onchange="restoreData()">
+
+            </label>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= EXPORT REPORTS ================= -->
+
+    <div class="settings-card">
+
+        <div class="settings-card-header green">
+
+            <i class="fas fa-file-export"></i>
+            Export Reports
+
+        </div>
+
+        <div class="settings-card-body">
+
+            <p class="text-muted">
+                Download your financial reports.
+            </p>
+
+            <a
+                href="/download_report_pdf"
+                class="btn btn-danger action-btn">
+
+                <i class="fas fa-file-pdf"></i>
+                Export PDF
+
+            </a>
+
+            <a
+                href="/download_report_excel"
+                class="btn btn-success action-btn ms-2">
+
+                <i class="fas fa-file-excel"></i>
+                Export Excel
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= PRIVACY ================= -->
+
+    <div class="settings-card">
+
+        <div class="settings-card-header dark">
+
+            <i class="fas fa-user-shield"></i>
+            Privacy Settings
+
+        </div>
+
+        <div class="settings-card-body">
+
+            <div class="form-check form-switch mb-3">
+
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="hideBalance"
+                    checked>
+
+                <label class="form-check-label"
+                       for="hideBalance">
+
+                    Hide Account Balance
+
+                </label>
+
+            </div>
+
+            <div class="form-check form-switch mb-3">
+
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="hideInvestment">
+
+                <label class="form-check-label"
+                       for="hideInvestment">
+
+                    Hide Investment Details
+
+                </label>
+
+            </div>
+
+            <div class="form-check form-switch">
+
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="twoFactor"
+                    checked>
+
+                <label class="form-check-label"
+                       for="twoFactor">
+
+                    Enable Two-Factor Authentication
+
+                </label>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= DANGER ZONE ================= -->
+
+    <div class="settings-card danger-zone">
+
+        <div class="settings-card-header red">
+
+            <i class="fas fa-triangle-exclamation"></i>
+            Danger Zone
+
+        </div>
+
+        <div class="settings-card-body">
+
+            <p class="text-danger fw-bold">
+                Deleting your account is permanent and cannot be undone.
+            </p>
+
+            <button
+                type="button"
+                class="btn btn-outline-danger action-btn"
+                onclick="deleteAccount()">
+
+                <i class="fas fa-trash"></i>
+                Delete Account
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= SAVE ALL ================= -->
+
+    <div class="save-area">
+
+        <button
+            type="button"
+            class="btn btn-primary btn-lg action-btn"
+            onclick="saveAllSettings()">
+
+            <i class="fas fa-save"></i>
+            Save All Settings
+
+        </button>
+
+        <a
+            href="/dashboard"
+            class="btn btn-secondary btn-lg action-btn ms-2">
+
+            <i class="fas fa-arrow-left"></i>
+            Back to Dashboard
+
+        </a>
+
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="text-center mt-5 mb-3 text-muted">
+
+        <hr>
+
+        <h6>
+            © 2026 Smart Finance Insights
+        </h6>
+
+        <small>
+            Settings Module • Smart Finance Management System
+        </small>
+
+    </footer>
+
+</div>
+
+
+<!-- ================= TOAST ================= -->
+
+<div class="toast-container">
+
+    <div
+        id="settingsToast"
+        class="toast"
+        role="alert">
+
+        <div class="toast-header">
+
+            <i class="fas fa-check-circle text-success me-2"></i>
+
+            <strong class="me-auto">
+                Smart Finance
+            </strong>
+
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="toast">
+            </button>
+
+        </div>
+
+        <div
+            class="toast-body"
+            id="toastMessage">
+
+            Settings saved successfully.
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+    /* ================= TOAST ================= */
+
+    function showMessage(message) {
+
+        document.getElementById("toastMessage").innerText = message;
+
+        const toastElement =
+            document.getElementById("settingsToast");
+
+        const toast =
+            new bootstrap.Toast(toastElement);
+
+        toast.show();
+    }
+
+
+    /* ================= SAVE PROFILE ================= */
+
+    function saveProfile() {
+
+        const name =
+            document.getElementById("fullName").value.trim();
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        if (!name) {
+
+            showMessage("Please enter your full name.");
+
+            return;
+        }
+
+        if (!email) {
+
+            showMessage("Please enter your email.");
+
+            return;
+        }
+
+        localStorage.setItem("profileName", name);
+        localStorage.setItem("profileEmail", email);
+
+        showMessage("Profile settings saved successfully.");
+    }
+
+
+    /* ================= CHANGE PASSWORD ================= */
+
+    function changePassword() {
+
+        const current =
+            document.getElementById("currentPassword").value;
+
+        const newPassword =
+            document.getElementById("newPassword").value;
+
+        const confirm =
+            document.getElementById("confirmPassword").value;
+
+        if (!current || !newPassword || !confirm) {
+
+            showMessage("Please fill all password fields.");
+
+            return;
+        }
+
+        if (newPassword !== confirm) {
+
+            showMessage("New password and confirm password do not match.");
+
+            return;
+        }
+
+        if (newPassword.length < 6) {
+
+            showMessage("Password must contain at least 6 characters.");
+
+            return;
+        }
+
+        showMessage("Password validation completed.");
+
+        document.getElementById("currentPassword").value = "";
+        document.getElementById("newPassword").value = "";
+        document.getElementById("confirmPassword").value = "";
+    }
+
+
+    /* ================= DARK MODE ================= */
+
+    function toggleDarkMode() {
+
+        const enabled =
+            document.getElementById("darkMode").checked;
+
+        if (enabled) {
+
+            document.body.style.background = "#121212";
+            document.body.style.color = "#ffffff";
+
+            document.querySelectorAll(".settings-card, .page-header, .save-area")
+                .forEach(function(card) {
+
+                    card.style.background = "#1e1e1e";
+                    card.style.color = "#ffffff";
+
+                });
+
+            localStorage.setItem("darkMode", "true");
+
+        } else {
+
+            document.body.style.background = "#f3f6fb";
+            document.body.style.color = "#263238";
+
+            document.querySelectorAll(".settings-card, .page-header, .save-area")
+                .forEach(function(card) {
+
+                    card.style.background = "#ffffff";
+                    card.style.color = "#263238";
+
+                });
+
+            localStorage.setItem("darkMode", "false");
+        }
+    }
+
+
+    /* ================= THEME ================= */
+
+    function changeTheme() {
+
+        const theme =
+            document.getElementById("themeColor").value;
+
+        const colors = {
+
+            blue: "#0d6efd",
+            green: "#198754",
+            purple: "#6f42c1",
+            orange: "#fd7e14"
+
+        };
+
+        const selectedColor =
+            colors[theme] || colors.blue;
+
+        document.querySelectorAll(".blue").forEach(function(element) {
+
+            element.style.background = selectedColor;
+
+        });
+
+        localStorage.setItem("themeColor", theme);
+
+        showMessage("Theme color updated.");
+    }
+
+
+    /* ================= BACKUP ================= */
+
+    function backupData() {
+
+        const backup = {
+
+            application:
+                "Smart Finance Insights",
+
+            date:
+                new Date().toISOString(),
+
+            profile: {
+
+                name:
+                    document.getElementById("fullName").value,
+
+                email:
+                    document.getElementById("email").value
+
+            },
+
+            preferences: {
+
+                monthlyReports:
+                    document.getElementById("monthlyReports").checked,
+
+                aiSuggestions:
+                    document.getElementById("aiSuggestions").checked,
+
+                promotionalEmails:
+                    document.getElementById("promotionalEmails").checked,
+
+                smsNotifications:
+                    document.getElementById("smsNotifications").checked,
+
+                whatsappNotifications:
+                    document.getElementById("whatsappNotifications").checked,
+
+                pushNotifications:
+                    document.getElementById("pushNotifications").checked,
+
+                darkMode:
+                    document.getElementById("darkMode").checked,
+
+                language:
+                    document.getElementById("language").value,
+
+                currency:
+                    document.getElementById("currency").value
+
+            }
+
+        };
+
+        const blob =
+            new Blob(
+                [JSON.stringify(backup, null, 2)],
+                {type: "application/json"}
+            );
+
+        const url =
+            URL.createObjectURL(blob);
+
+        const link =
+            document.createElement("a");
+
+        link.href = url;
+
+        link.download =
+            "smart_finance_backup.json";
+
+        link.click();
+
+        URL.revokeObjectURL(url);
+
+        showMessage("Backup downloaded successfully.");
+    }
+
+
+    /* ================= RESTORE ================= */
+
+    function restoreData() {
+
+        const file =
+            document.getElementById("restoreFile").files[0];
+
+        if (!file) {
+
+            return;
+        }
+
+        const reader =
+            new FileReader();
+
+        reader.onload = function(event) {
+
+            try {
+
+                const data =
+                    JSON.parse(event.target.result);
+
+                if (data.profile) {
+
+                    if (data.profile.name) {
+
+                        document.getElementById("fullName").value =
+                            data.profile.name;
+
+                    }
+
+                    if (data.profile.email) {
+
+                        document.getElementById("email").value =
+                            data.profile.email;
+
+                    }
+
+                }
+
+                if (data.preferences) {
+
+                    const p =
+                        data.preferences;
+
+                    if (typeof p.monthlyReports !== "undefined")
+                        document.getElementById("monthlyReports").checked =
+                            p.monthlyReports;
+
+                    if (typeof p.aiSuggestions !== "undefined")
+                        document.getElementById("aiSuggestions").checked =
+                            p.aiSuggestions;
+
+                    if (typeof p.darkMode !== "undefined")
+                        document.getElementById("darkMode").checked =
+                            p.darkMode;
+
+                    if (p.language)
+                        document.getElementById("language").value =
+                            p.language;
+
+                    if (p.currency)
+                        document.getElementById("currency").value =
+                            p.currency;
+                }
+
+                showMessage("Backup restored successfully.");
+
+            }
+
+            catch(error) {
+
+                showMessage("Invalid backup file.");
+
+            }
+
+        };
+
+        reader.readAsText(file);
+    }
+
+
+    /* ================= DELETE ACCOUNT ================= */
+
+    function deleteAccount() {
+
+        const confirmation =
+            confirm(
+                "Are you sure you want to delete your account? This action cannot be undone."
+            );
+
+        if (!confirmation) {
+
+            return;
+        }
+
+        const secondConfirmation =
+            confirm(
+                "Please confirm again that you want to delete your account."
+            );
+
+        if (!secondConfirmation) {
+
+            return;
+        }
+
+        window.location.href =
+            "/delete_account";
+    }
+
+
+    /* ================= SAVE ALL SETTINGS ================= */
+
+    function saveAllSettings() {
+
+        const settings = {
+
+            monthlyReports:
+                document.getElementById("monthlyReports").checked,
+
+            aiSuggestions:
+                document.getElementById("aiSuggestions").checked,
+
+            promotionalEmails:
+                document.getElementById("promotionalEmails").checked,
+
+            smsNotifications:
+                document.getElementById("smsNotifications").checked,
+
+            whatsappNotifications:
+                document.getElementById("whatsappNotifications").checked,
+
+            pushNotifications:
+                document.getElementById("pushNotifications").checked,
+
+            darkMode:
+                document.getElementById("darkMode").checked,
+
+            themeColor:
+                document.getElementById("themeColor").value,
+
+            language:
+            document.getElementById("language").value,
+
+        currency:
+            document.getElementById("currency").value,
+
+        dateFormat:
+            document.getElementById("dateFormat").value,
+
+        timeFormat:
+            document.getElementById("timeFormat").value,
+
+        enableAI:
+            document.getElementById("enableAI").checked,
+
+        smartBudget:
+            document.getElementById("smartBudget").checked,
+
+        investmentPredictions:
+            document.getElementById("investmentPredictions").checked,
+
+        budgetAlerts:
+            document.getElementById("budgetAlerts").checked,
+
+        investmentAlerts:
+            document.getElementById("investmentAlerts").checked,
+
+        goalAlerts:
+            document.getElementById("goalAlerts").checked,
+
+        monthlyFinancialReport:
+            document.getElementById("monthlyFinancialReport").checked,
+
+        hideBalance:
+            document.getElementById("hideBalance").checked,
+
+        hideInvestment:
+            document.getElementById("hideInvestment").checked,
+
+        twoFactor:
+            document.getElementById("twoFactor").checked
+
+    };
+
+
+    /* Save settings in browser */
+
+    localStorage.setItem(
+        "smartFinanceSettings",
+        JSON.stringify(settings)
+    );
+
+
+    /* Apply dark mode */
+
+    if (settings.darkMode) {
+
+        document.body.classList.add("dark-mode");
+
+    } else {
+
+        document.body.classList.remove("dark-mode");
+
+    }
+
+
+    showMessage(
+        "All settings saved successfully."
+    );
+
+}
+
+
+/* ================= LOAD SETTINGS ================= */
+
+function loadSettings() {
+
+    const saved =
+        localStorage.getItem(
+            "smartFinanceSettings"
+        );
+
+    if (!saved) {
+
+        return;
+    }
+
+
+    try {
+
+        const settings =
+            JSON.parse(saved);
+
+
+        if (typeof settings.monthlyReports !== "undefined")
+            document.getElementById("monthlyReports").checked =
+                settings.monthlyReports;
+
+
+        if (typeof settings.aiSuggestions !== "undefined")
+            document.getElementById("aiSuggestions").checked =
+                settings.aiSuggestions;
+
+
+        if (typeof settings.promotionalEmails !== "undefined")
+            document.getElementById("promotionalEmails").checked =
+                settings.promotionalEmails;
+
+
+        if (typeof settings.smsNotifications !== "undefined")
+            document.getElementById("smsNotifications").checked =
+                settings.smsNotifications;
+
+
+        if (typeof settings.whatsappNotifications !== "undefined")
+            document.getElementById("whatsappNotifications").checked =
+                settings.whatsappNotifications;
+
+
+        if (typeof settings.pushNotifications !== "undefined")
+            document.getElementById("pushNotifications").checked =
+                settings.pushNotifications;
+
+
+        if (typeof settings.darkMode !== "undefined") {
+
+            document.getElementById("darkMode").checked =
+                settings.darkMode;
+
+            if (settings.darkMode) {
+
+                document.body.classList.add("dark-mode");
+
+            }
+
+        }
+
+
+        if (settings.themeColor) {
+
+            document.getElementById("themeColor").value =
+                settings.themeColor;
+
+        }
+
+
+        if (settings.language) {
+
+            document.getElementById("language").value =
+                settings.language;
+
+        }
+
+
+        if (settings.currency) {
+
+            document.getElementById("currency").value =
+                settings.currency;
+
+        }
+
+
+        if (settings.dateFormat) {
+
+            document.getElementById("dateFormat").value =
+                settings.dateFormat;
+
+        }
+
+
+        if (settings.timeFormat) {
+
+            document.getElementById("timeFormat").value =
+                settings.timeFormat;
+
+        }
+
+
+        if (typeof settings.enableAI !== "undefined")
+            document.getElementById("enableAI").checked =
+                settings.enableAI;
+
+
+        if (typeof settings.smartBudget !== "undefined")
+            document.getElementById("smartBudget").checked =
+                settings.smartBudget;
+
+
+        if (typeof settings.investmentPredictions !== "undefined")
+            document.getElementById("investmentPredictions").checked =
+                settings.investmentPredictions;
+
+
+        if (typeof settings.budgetAlerts !== "undefined")
+            document.getElementById("budgetAlerts").checked =
+                settings.budgetAlerts;
+
+
+        if (typeof settings.investmentAlerts !== "undefined")
+            document.getElementById("investmentAlerts").checked =
+                settings.investmentAlerts;
+
+
+        if (typeof settings.goalAlerts !== "undefined")
+            document.getElementById("goalAlerts").checked =
+                settings.goalAlerts;
+
+
+        if (typeof settings.monthlyFinancialReport !== "undefined")
+            document.getElementById("monthlyFinancialReport").checked =
+                settings.monthlyFinancialReport;
+
+
+        if (typeof settings.hideBalance !== "undefined")
+            document.getElementById("hideBalance").checked =
+                settings.hideBalance;
+
+
+        if (typeof settings.hideInvestment !== "undefined")
+            document.getElementById("hideInvestment").checked =
+                settings.hideInvestment;
+
+
+        if (typeof settings.twoFactor !== "undefined")
+            document.getElementById("twoFactor").checked =
+                settings.twoFactor;
+
+
+    }
+
+    catch(error) {
+
+        console.log(
+            "Unable to load saved settings:",
+            error
+        );
+
+    }
+
+}
+
+
+/* ================= DARK MODE EVENT ================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        loadSettings();
+
+
+        const darkMode =
+            document.getElementById("darkMode");
+
+        if (darkMode) {
+
+            darkMode.addEventListener(
+                "change",
+                toggleDarkMode
+            );
+
+        }
+
+
+        const themeColor =
+            document.getElementById("themeColor");
+
+        if (themeColor) {
+
+            themeColor.addEventListener(
+                "change",
+                changeTheme
+            );
+
+        }
+
+    }
+);
+
+</script>
+
+
+<!-- ================= BOOTSTRAP JS ================= -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Transactions</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+background:#eef3f8;
+}
+
+.header{
+background:#0d6efd;
+color:white;
+padding:20px;
+border-radius:15px;
+margin:20px 0;
+}
+
+.card{
+border:none;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h2>💳 Transactions</h2>
+
+<p>Income & Expense History</p>
+
+</div>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<div class="card p-3">
+
+<h4>Income Transactions</h4>
+
+<table class="table table-bordered">
+
+<tr>
+
+<th>Source</th>
+
+<th>Amount</th>
+
+<th>Date</th>
+
+</tr>
+
+{% for i in incomes %}
+
+<tr>
+
+<td>{{ i.source }}</td>
+
+<td>₹ {{ i.amount }}</td>
+
+<td>{{ i.date }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="card p-3">
+
+<h4>Expense Transactions</h4>
+
+<table class="table table-bordered">
+
+<tr>
+
+<th>Category</th>
+
+<th>Amount</th>
+
+<th>Date</th>
+
+</tr>
+
+{% for e in expenses %}
+
+<tr>
+
+<td>{{ e.category }}</td>
+
+<td>₹ {{ e.amount }}</td>
+
+<td>{{ e.date }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+<br>
+
+<div class="row">
+
+<div class="col-md-4">
+
+<div class="card p-3 text-center">
+
+<h5>💰 Total Income</h5>
+
+<h2>
+₹ {{ incomes | sum(attribute='amount') }}
+</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card p-3 text-center">
+
+<h5>💸 Total Expense</h5>
+
+<h2>
+₹ {{ expenses | sum(attribute='amount') }}
+</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card p-3 text-center">
+
+<h5>📋 Total Transactions</h5>
+
+<h2>
+{{ incomes|length + expenses|length }}
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="card p-4">
+
+<h4>Transaction Summary</h4>
+
+<ul>
+
+<li>Total Income Records : <b>{{ incomes|length }}</b></li>
+
+<li>Total Expense Records : <b>{{ expenses|length }}</b></li>
+
+<li>Total Transactions : <b>{{ incomes|length + expenses|length }}</b></li>
+
+</ul>
+
+</div>
+
+<br>
+
+<div class="text-center">
+
+<a href="/dashboard" class="btn btn-primary">
+
+⬅ Back to Dashboard
+
+</a>
+
+</div>
+
+<br>
+
+<footer class="text-center text-muted">
+
+<hr>
+
+<p>© 2026 Smart Finance Insights</p>
+
+<p>Transactions Module</p>
+
+</footer>
+
+</div>
+
+</body>
+
+</html>

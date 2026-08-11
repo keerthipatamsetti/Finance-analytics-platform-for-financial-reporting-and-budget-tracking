@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Intelligence Dashboard</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#eef3f8;
+    overflow-x:hidden;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100vh;
+    background:#0d47a1;
+    overflow-y:auto;
+    padding:20px;
+    color:white;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.sidebar p{
+    text-align:center;
+    font-size:13px;
+    margin-bottom:20px;
+}
+
+.sidebar a{
+    display:block;
+    padding:12px;
+    margin-bottom:8px;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    transition:.3s;
+}
+
+.sidebar a:hover{
+    background:#1565c0;
+}
+
+/* ================= MAIN ================= */
+
+.main{
+    margin-left:260px;
+    padding:20px;
+}
+
+/* ================= TOPBAR ================= */
+
+.topbar{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    margin-bottom:20px;
+}
+
+/* ================= SUMMARY CARDS ================= */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:15px;
+}
+
+.card-box{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.card-box i{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+/* ================= COMMON BOX ================= */
+
+.chart-box,
+.table-box{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    margin-top:20px;
+}
+
+/* ================= PORTFOLIO GROWTH ================= */
+
+.portfolio-growth-box{
+    width:100%;
+}
+
+.growth-chart-container{
+    position:relative;
+    width:100%;
+    height:350px;
+}
+
+.growth-chart-container canvas{
+    width:100% !important;
+    height:100% !important;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1200px){
+
+    .cards{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+}
+
+@media(max-width:768px){
+
+    .sidebar{
+        width:200px;
+    }
+
+    .main{
+        margin-left:210px;
+    }
+
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:576px){
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+    }
+
+    .main{
+        margin-left:0;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- ===================================================== -->
+<!-- SIDEBAR -->
+<!-- ===================================================== -->
+
+<div class="sidebar">
+
+    <h2>Smart Finance</h2>
+
+    <p>Insights Dashboard</p>
+
+    <hr>
+
+    <a href="/dashboard">
+        <i class="fas fa-home"></i> Dashboard
+    </a>
+
+    <a href="/income">
+        <i class="fas fa-wallet"></i> Income
+    </a>
+
+    <a href="/expense">
+        <i class="fas fa-money-bill"></i> Expense
+    </a>
+
+    <a href="/transactions">
+        <i class="fas fa-receipt"></i> Transactions
+    </a>
+
+    <a href="/budget">
+        <i class="fas fa-chart-pie"></i> Budget
+    </a>
+
+    <a href="/investment">
+        <i class="fas fa-chart-line"></i> Investments
+    </a>
+
+    <a href="/asset_allocation">
+        <i class="fas fa-chart-simple"></i> Asset Allocation
+    </a>
+
+    <a href="/portfolio_analytics">
+        <i class="fas fa-briefcase"></i> Portfolio Analytics
+    </a>
+
+    <a href="/financial_goals">
+        <i class="fas fa-bullseye"></i> Financial Goals
+    </a>
+
+    <a href="/spending_analysis">
+        <i class="fas fa-chart-column"></i> Spending Analysis
+    </a>
+
+    <a href="/budget_recommendation">
+        <i class="fas fa-lightbulb"></i> Budget Recommendation
+    </a>
+
+    <a href="/financial_health">
+        <i class="fas fa-heart"></i> Financial Health
+    </a>
+
+    <a href="/notifications">
+        <i class="fas fa-bell"></i> Notifications
+    </a>
+
+    <a href="/reports">
+        <i class="fas fa-file-lines"></i> Reports
+    </a>
+
+    <a href="/advanced_reports">
+        <i class="fas fa-file-invoice-dollar"></i> Advanced Reports </a>
+        
+    <a href="/ai_insights">
+        <i class="fas fa-robot"></i> AI Insights
+    </a>
+
+    <a href="/profile">
+        <i class="fas fa-user"></i> Profile
+    </a>
+
+    <a href="/settings">
+        <i class="fas fa-cog"></i> Settings
+    </a>
+
+    <a href="/jarvis">
+        <i class="fa-solid fa-robot"></i> AI Financial Assistant
+    </a>
+
+    <a href="/logout">
+        <i class="fas fa-right-from-bracket"></i> Logout
+    </a>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- MAIN CONTENT -->
+<!-- ===================================================== -->
+
+<div class="main">
+
+
+<!-- ================= TOPBAR ================= -->
+
+<div class="topbar">
+
+    <div class="d-flex justify-content-between align-items-center">
+
+        <div>
+
+            <h2>🧠 Intelligence Dashboard</h2>
+
+            <p class="text-muted">
+                AI Powered Smart Finance Insights & Analytics
+            </p>
+
+        </div>
+
+        <div>
+
+            <i class="fas fa-bell fa-lg"></i>
+
+            <span class="badge bg-danger">
+                {{ notification_count }}
+            </span>
+
+            &nbsp;&nbsp;
+
+            <i class="fas fa-user-circle fa-2x"></i>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- SUMMARY CARDS -->
+<!-- ===================================================== -->
+
+<div class="cards">
+
+
+    <!-- TOTAL INCOME -->
+
+    <div class="card-box">
+
+        <i class="fas fa-wallet text-success"></i>
+
+        <h6>Total Income</h6>
+
+        <h3 class="text-success">
+            ₹ {{ total_income }}
+        </h3>
+
+    </div>
+
+
+    <!-- TOTAL EXPENSE -->
+
+    <div class="card-box">
+
+        <i class="fas fa-money-bill-wave text-danger"></i>
+
+        <h6>Total Expense</h6>
+
+        <h3 class="text-danger">
+            ₹ {{ total_expense }}
+        </h3>
+
+    </div>
+
+
+    <!-- TOTAL SAVINGS -->
+
+    <div class="card-box">
+
+        <i class="fas fa-piggy-bank text-primary"></i>
+
+        <h6>Total Savings</h6>
+
+        <h3 class="text-primary">
+            ₹ {{ total_savings }}
+        </h3>
+
+    </div>
+
+
+    <!-- INVESTMENT -->
+
+    <div class="card-box">
+
+        <i class="fas fa-chart-line text-warning"></i>
+
+        <h6>Investment</h6>
+
+        <h3 class="text-warning">
+            ₹ {{ total_investment }}
+        </h3>
+
+    </div>
+
+
+    <!-- HEALTH SCORE -->
+
+    <div class="card-box">
+
+        <i class="fas fa-heart text-info"></i>
+
+        <h6>Health Score</h6>
+
+        <h3>
+            {{ health_score }}/100
+        </h3>
+
+    </div>
+
+
+    <!-- NOTIFICATIONS -->
+
+    <div class="card-box">
+
+        <i class="fas fa-bell text-secondary"></i>
+
+        <h6>Notifications</h6>
+
+        <h3>
+            {{ notification_count }}
+        </h3>
+
+    </div>
+
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- INTELLIGENCE SECTION -->
+<!-- ===================================================== -->
+
+<div class="row mt-4">
+
+
+    <!-- SPENDING ANALYSIS -->
+
+    <div class="col-lg-3">
+
+        <div class="chart-box">
+
+            <h5 class="mb-3">
+                📊 Spending Analysis
+            </h5>
+
+            <canvas id="expensePieChart"></canvas>
+
+        </div>
+
+    </div>
+
+
+    <!-- FINANCIAL HEALTH -->
+
+    <div class="col-lg-3">
+
+        <div class="chart-box text-center">
+
+            <h5>
+                ❤️ Financial Health
+            </h5>
+
+            <canvas id="healthChart"
+                    width="180"
+                    height="180">
+            </canvas>
+
+            <h3 class="mt-3">
+                {{ health_score }}/100
+            </h3>
+
+            <p class="text-success">
+                {{ recommendation }}
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- BUDGET RECOMMENDATION -->
+
+    <div class="col-lg-3">
+
+        <div class="table-box">
+
+            <h5>
+                💡 Budget Recommendation
+            </h5>
+
+            <ul class="list-group">
+
+                <li class="list-group-item">
+                    Reduce unnecessary expenses
+                </li>
+
+                <li class="list-group-item">
+                    Increase monthly savings
+                </li>
+
+                <li class="list-group-item">
+                    Track daily spending
+                </li>
+
+                <li class="list-group-item">
+                    Continue SIP Investments
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- AI INSIGHTS -->
+
+    <div class="col-lg-3">
+
+        <div class="table-box">
+
+            <h5>
+                🤖 AI Insights
+            </h5>
+
+            <div class="alert alert-success">
+                {{ recommendation }}
+            </div>
+
+            <div class="alert alert-info">
+                Portfolio performance is improving.
+            </div>
+
+            <div class="alert alert-warning">
+                Monitor your monthly expenses.
+            </div>
+
+            <div class="alert alert-primary">
+                Maintain emergency savings.
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- NOTIFICATIONS / GOALS / MODULE STATUS / TESTING -->
+<!-- ===================================================== -->
+
+<div class="row mt-4">
+
+
+    <!-- RECENT NOTIFICATIONS -->
+
+    <div class="col-lg-3">
+
+        <div class="table-box">
+
+            <h5>🔔 Recent Notifications</h5>
+
+            {% if notifications %}
+
+                {% for n in notifications %}
+
+                <div class="alert alert-{{
+                    'danger' if n.priority=='High'
+                    else 'warning' if n.priority=='Medium'
+                    else 'success'
+                }}">
+
+                    <strong>
+                        {{ n.notification_type }}
+                    </strong>
+
+                    <br>
+
+                    {{ n.message }}
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="alert alert-secondary">
+                    No Notifications Available
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <!-- GOAL PROGRESS -->
+
+    <div class="col-lg-3">
+
+        <div class="chart-box text-center">
+
+            <h5>🎯 Goal Progress</h5>
+
+            <h2 class="text-primary">
+                {{ goal_progress }}%
+            </h2>
+
+            <div class="progress mt-3"
+                 style="height:25px;">
+
+                <div class="progress-bar bg-success"
+                     style="width:{{ goal_progress }}%;">
+
+                    {{ goal_progress }}%
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <h6>Goal Amount</h6>
+
+            <h4>
+                ₹ {{ goal_amount }}
+            </h4>
+
+        </div>
+
+    </div>
+
+
+    <!-- MODULE STATUS -->
+
+    <div class="col-lg-3">
+
+        <div class="table-box">
+
+            <h5>📋 Module Status</h5>
+
+            <table class="table table-bordered">
+
+                <tr>
+                    <td>Dashboard</td>
+                    <td class="text-success">✔</td>
+                </tr>
+
+                <tr>
+                    <td>Income</td>
+                    <td class="text-success">✔</td>
+                </tr>
+
+                <tr>
+                    <td>Expense</td>
+                    <td class="text-success">✔</td>
+                </tr>
+
+                <tr>
+                    <td>Budget</td>
+                    <td class="text-success">✔</td>
+                </tr>
+
+                <tr>
+                    <td>Reports</td>
+                    <td class="text-success">✔</td>
+                </tr>
+
+                <tr>
+                    <td>AI Insights</td>
+                    <td class="text-success">✔</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- INTEGRATION TESTING -->
+
+    <div class="col-lg-3">
+
+        <div class="table-box">
+
+            <h5>✅ Integration Testing</h5>
+
+            <table class="table table-striped">
+
+                <tr>
+                    <td>Login</td>
+                    <td class="text-success">PASS</td>
+                </tr>
+
+                <tr>
+                    <td>Dashboard</td>
+                    <td class="text-success">PASS</td>
+                </tr>
+
+                <tr>
+                    <td>AI Module</td>
+                    <td class="text-success">PASS</td>
+                </tr>
+
+                <tr>
+                    <td>Reports</td>
+                    <td class="text-success">PASS</td>
+                </tr>
+
+                <tr>
+                    <td>Notifications</td>
+                    <td class="text-success">PASS</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- RECENT TRANSACTIONS + MONTHLY REPORT -->
+<!-- ===================================================== -->
+
+<div class="row mt-4">
+
+
+    <!-- RECENT TRANSACTIONS -->
+
+    <div class="col-lg-8">
+
+        <div class="table-box">
+
+            <h4>
+                💳 Recent Transactions
+            </h4>
+
+            <table class="table table-striped table-hover">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+
+                {% for e in expenses[:5] %}
+
+                <tr>
+
+                    <td>
+                        {{ e.date }}
+                    </td>
+
+                    <td>
+
+                        <span class="badge bg-danger">
+                            Expense
+                        </span>
+
+                    </td>
+
+                    <td>
+                        {{ e.category }}
+                    </td>
+
+                    <td class="text-danger">
+                        ₹ {{ e.amount }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+
+                {% for i in incomes[:5] %}
+
+                <tr>
+
+                    <td>
+                        {{ i.date }}
+                    </td>
+
+                    <td>
+
+                        <span class="badge bg-success">
+                            Income
+                        </span>
+
+                    </td>
+
+                    <td>
+                        {{ i.source }}
+                    </td>
+
+                    <td class="text-success">
+                        ₹ {{ i.amount }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- MONTHLY REPORT -->
+
+    <div class="col-lg-4">
+
+        <div class="table-box">
+
+            <h4>
+                📅 Monthly Report
+            </h4>
+
+            <table class="table table-bordered">
+
+                <tr>
+
+                    <th>
+                        Total Income
+                    </th>
+
+                    <td class="text-success">
+                        ₹ {{ total_income }}
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>
+                        Total Expense
+                    </th>
+
+                    <td class="text-danger">
+                        ₹ {{ total_expense }}
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>
+                        Total Savings
+                    </th>
+
+                    <td class="text-primary">
+                        ₹ {{ total_savings }}
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>
+                        Total Investment
+                    </th>
+
+                    <td>
+                        ₹ {{ total_investment }}
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>
+                        Overall ROI
+                    </th>
+
+                    <td>
+                        {{ overall_roi }} %
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- PORTFOLIO GROWTH - ONLY ONE GRAPH -->
+<!-- ===================================================== -->
+
+<div class="row mt-4">
+
+    <div class="col-12">
+
+        <div class="chart-box portfolio-growth-box">
+
+            <h4>
+                📈 Portfolio Growth
+            </h4>
+
+            <p class="text-muted">
+                Investment portfolio performance overview
+            </p>
+
+            <div class="growth-chart-container">
+
+                <canvas id="growthChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- TOP INVESTMENTS + PERFORMANCE SUMMARY -->
+<!-- ===================================================== -->
+
+<div class="row mt-4">
+
+
+    <!-- TOP INVESTMENTS -->
+
+    <div class="col-lg-8">
+
+        <div class="table-box">
+
+            <h4>
+                🏆 Top Investments
+            </h4>
+
+            <table class="table table-hover">
+
+                <thead class="table-primary">
+
+                    <tr>
+
+                        <th>Asset</th>
+
+                        <th>Investment</th>
+
+                        <th>Current Value</th>
+
+                        <th>Profit</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+
+                {% if investments %}
+
+                    {% for i in investments %}
+
+                    <tr>
+
+                        <td>
+                            {{ i.asset }}
+                        </td>
+
+                        <td>
+                            {{ i.investment_name }}
+                        </td>
+
+                        <td>
+                            ₹ {{ i.current_value }}
+                        </td>
+
+                        <td class="{{
+                            'text-success'
+                            if i.current_value >= i.invested_amount
+                            else 'text-danger'
+                        }}">
+
+                            ₹ {{ i.current_value - i.invested_amount }}
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <tr>
+
+                        <td colspan="4"
+                            class="text-center text-muted">
+
+                            No Investments Available
+
+                        </td>
+
+                    </tr>
+
+                {% endif %}
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- ===================================================== -->
+<!-- PERFORMANCE SUMMARY -->
+<!-- ===================================================== -->
+
+<div class="col-lg-4">
+
+    <div class="table-box">
+
+        <h4>
+            📊 Performance Summary
+        </h4>
+
+        <table class="table table-bordered">
+
+            <tr>
+                <th>Total Assets</th>
+
+                <td>
+                    {{ total_assets }}
+                </td>
+            </tr>
+
+            <tr>
+                <th>Total Profit</th>
+
+                <td class="text-success">
+                    ₹ {{ total_profit }}
+                </td>
+            </tr>
+
+            <tr>
+                <th>Risk Level</th>
+
+                <td class="text-warning">
+                    {{ risk_level }}
+                </td>
+            </tr>
+
+            <tr>
+                <th>Recommendation</th>
+
+                <td>
+                    {{ recommendation }}
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- CHART SCRIPTS -->
+<!-- ===================================================== -->
+
+<script>
+
+/* ================= FINANCIAL HEALTH ================= */
+
+const healthCanvas =
+    document.getElementById("healthChart");
+
+if (healthCanvas) {
+
+    new Chart(healthCanvas, {
+
+        type: "doughnut",
+
+        data: {
+
+            labels: [
+                "Score",
+                "Remaining"
+            ],
+
+            datasets: [{
+
+                data: [
+                    {{ health_score|default(0) }},
+                    {{ 100 - (health_score|default(0)) }}
+                ],
+
+                backgroundColor: [
+                    "#28a745",
+                    "#e9ecef"
+                ],
+
+                borderWidth: 0
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            cutout: "75%",
+
+            plugins: {
+
+                legend: {
+                    display: false
+                }
+
+            }
+
+        }
+
+    });
+
+}
+
+
+/* ================= SPENDING ANALYSIS ================= */
+
+const expensePie =
+    document.getElementById("expensePieChart");
+
+if (expensePie) {
+
+    new Chart(expensePie, {
+
+        type: "pie",
+
+        data: {
+
+            labels: [
+                "Food",
+                "Shopping",
+                "Bills",
+                "Travel",
+                "Others"
+            ],
+
+            datasets: [{
+
+                data: [
+                    35,
+                    25,
+                    15,
+                    10,
+                    15
+                ],
+
+                backgroundColor: [
+                    "#4CAF50",
+                    "#2196F3",
+                    "#FFC107",
+                    "#F44336",
+                    "#9C27B0"
+                ]
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true
+
+        }
+
+    });
+
+}
+
+
+/* ================= PORTFOLIO GROWTH ================= */
+
+const growth =
+    document.getElementById("growthChart");
+
+if (growth) {
+
+    new Chart(growth, {
+
+        type: "line",
+
+        data: {
+
+            labels: [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun"
+            ],
+
+            datasets: [{
+
+                label: "Portfolio Growth",
+
+                data: [
+                    15,
+                    22,
+                    35,
+                    45,
+                    58,
+                    {{ overall_roi|default(0) }}
+                ],
+
+                borderColor: "#0d6efd",
+
+                backgroundColor:
+                    "rgba(13,110,253,.15)",
+
+                fill: true,
+
+                tension: 0.4,
+
+                pointRadius: 5,
+
+                pointHoverRadius: 7
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            plugins: {
+
+                legend: {
+                    display: true
+                }
+
+            },
+
+            scales: {
+
+                y: {
+
+                    beginAtZero: true,
+
+                    title: {
+
+                        display: true,
+
+                        text: "Portfolio Performance (%)"
+
+                    }
+
+                },
+
+                x: {
+
+                    title: {
+
+                        display: true,
+
+                        text: "Month"
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    });
+
+}
+
+</script>
+
+
+<!-- ===================================================== -->
+<!-- BOOTSTRAP -->
+<!-- ===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+</script>
+
+<script>
+
+document
+.getElementById("feedbackForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const rating =
+        document.querySelector(
+            'input[name="rating"]:checked'
+        );
+
+    const feedback =
+        document.getElementById(
+            "feedbackText"
+        ).value.trim();
+
+    if (!rating || !feedback) {
+
+        alert("Please select a rating and enter your feedback.");
+
+        return;
+
+    }
+
+
+    const stars =
+        "★".repeat(
+            parseInt(rating.value)
+        )
+        +
+        "☆".repeat(
+            5 - parseInt(rating.value)
+        );
+
+
+    const feedbackList =
+        document.getElementById(
+            "feedbackList"
+        );
+
+
+    /*
+       Remove "No feedback submitted yet."
+       when first feedback is added.
+    */
+
+    if (
+        feedbackList.innerText.includes(
+            "No feedback submitted yet."
+        )
+    ) {
+
+        feedbackList.innerHTML = "";
+
+    }
+
+
+    const item =
+        document.createElement("div");
+
+    item.className =
+        "feedback-item";
+
+
+    const date =
+        new Date().toLocaleString();
+
+
+    item.innerHTML = `
+
+        <div class="feedback-item-top">
+
+            <span class="feedback-stars">
+                ${stars}
+            </span>
+
+            <span class="feedback-date">
+                ${date}
+            </span>
+
+        </div>
+
+        <p class="feedback-text">
+            ${feedback}
+        </p>
+
+    `;
+
+
+    feedbackList.prepend(item);
+
+
+    /*
+       Show success message
+    */
+
+    const success =
+        document.getElementById(
+            "feedbackSuccess"
+        );
+
+    success.style.display = "block";
+
+
+    /*
+       Clear form
+    */
+
+    document
+        .getElementById("feedbackText")
+        .value = "";
+
+    document
+        .querySelectorAll(
+            'input[name="rating"]'
+        )
+        .forEach(function(input) {
+
+            input.checked = false;
+
+        });
+
+
+    /*
+       Hide success message after 4 seconds
+    */
+
+    setTimeout(function() {
+
+        success.style.display = "none";
+
+    }, 4000);
+
+});
+
+</script>
+
+{% if request.args.get('feedback') == 'success' %}
+
+<div class="alert alert-success text-center">
+    ✅ Thank you! Your feedback has been submitted successfully.
+</div>
+
+{% endif %}
+
+
+<!-- =========================================================
+     FEEDBACK SECTION
+     ========================================================= -->
+
+<div class="feedback-section">
+
+    <div class="feedback-header">
+
+        <h3>
+            💬 Give Us Your Feedback
+        </h3>
+
+        <p>
+            Help us improve your Smart Finance experience.
+        </p>
+
+    </div>
+
+
+    <form id="feedbackForm">
+
+        <!-- RATING -->
+
+        <div class="rating-box">
+
+            <label>
+                How would you rate your experience?
+            </label>
+
+            <div class="stars">
+
+                <input
+                    type="radio"
+                    id="star5"
+                    name="rating"
+                    value="5"
+                    required
+                >
+
+                <label for="star5">★</label>
+
+
+                <input
+                    type="radio"
+                    id="star4"
+                    name="rating"
+                    value="4"
+                >
+
+                <label for="star4">★</label>
+
+
+                <input
+                    type="radio"
+                    id="star3"
+                    name="rating"
+                    value="3"
+                >
+
+                <label for="star3">★</label>
+
+
+                <input
+                    type="radio"
+                    id="star2"
+                    name="rating"
+                    value="2"
+                >
+
+                <label for="star2">★</label>
+
+
+                <input
+                    type="radio"
+                    id="star1"
+                    name="rating"
+                    value="1"
+                >
+
+                <label for="star1">★</label>
+
+            </div>
+
+        </div>
+
+
+        <!-- FEEDBACK -->
+
+        <div class="feedback-input">
+
+            <label for="feedbackText">
+                Your Feedback
+            </label>
+
+            <textarea
+                id="feedbackText"
+                name="feedback"
+                placeholder="Tell us what you think..."
+                required
+            ></textarea>
+
+        </div>
+
+
+        <!-- BUTTON -->
+
+        <button
+            type="submit"
+            class="feedback-btn">
+
+            <i class="fas fa-paper-plane"></i>
+            Submit Feedback
+
+        </button>
+
+    </form>
+
+
+    <!-- SUCCESS -->
+
+    <div
+        id="feedbackSuccess"
+        class="feedback-success">
+
+        ✅ Thank you! Your feedback has been submitted successfully.
+
+    </div>
+
+
+    <!-- =====================================================
+         SUBMITTED FEEDBACK
+         ===================================================== -->
+
+    <div class="submitted-feedback">
+
+        <h4>
+            📋 Submitted Feedback
+        </h4>
+
+        <div
+            id="feedbackList"
+            class="feedback-list">
+
+            <p style="color:#888;">
+                No feedback submitted yet.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
+    

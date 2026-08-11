@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Financial Goals Planning</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+background:#eef3f8;
+font-family:Arial,sans-serif;
+}
+
+.header{
+background:linear-gradient(90deg,#198754,#0dcaf0);
+color:white;
+padding:25px;
+border-radius:15px;
+margin-top:20px;
+margin-bottom:20px;
+}
+
+.card{
+border:none;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h2>🎯 Financial Goals Planning</h2>
+
+<p>Plan your savings and achieve your financial goals.</p>
+
+</div>
+
+<div class="card p-4">
+
+<h4>Set Your Goal</h4>
+
+<form method="POST">
+
+<label>Goal Amount (₹)</label>
+
+<input
+type="number"
+name="goal_amount"
+class="form-control"
+required>
+
+<br>
+
+<button class="btn btn-success">
+
+Save Goal
+
+</button>
+
+</form>
+
+</div>
+
+<br>
+
+<div class="row">
+
+<div class="col-md-4">
+
+<div class="card p-3 text-center">
+
+<h5>Goal Amount</h5>
+
+<h2>₹ {{ goal_amount }}</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card p-3 text-center">
+
+<h5>Current Portfolio</h5>
+
+<h2>₹ {{ total_current }}</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card p-3 text-center">
+
+<h5>Goal Progress</h5>
+
+<h2>{{ progress }}%</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="card p-4">
+
+<h4>Progress</h4>
+
+<div class="progress" style="height:30px;">
+
+<div
+class="progress-bar bg-success"
+style="width:{{ progress }}%;">
+
+{{ progress }}%
+
+</div>
+
+</div>
+
+</div>
+<br>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<div class="card p-4">
+
+<h4>Goal Status</h4>
+
+{% if progress >= 100 %}
+
+<div class="alert alert-success">
+
+🏆 Congratulations! You have achieved your financial goal.
+
+</div>
+
+{% elif progress >= 75 %}
+
+<div class="alert alert-info">
+
+👏 Great! You are very close to achieving your goal.
+
+</div>
+
+{% elif progress >= 40 %}
+
+<div class="alert alert-warning">
+
+👍 Good progress. Keep investing regularly.
+
+</div>
+
+{% else %}
+
+<div class="alert alert-danger">
+
+⚠ Your goal has just started. Increase your investments.
+
+</div>
+
+{% endif %}
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="card p-4">
+
+<h4>Financial Suggestions</h4>
+
+<ul>
+
+<li>💰 Invest consistently every month.</li>
+
+<li>📈 Diversify your portfolio.</li>
+
+<li>🎯 Track your goal progress weekly.</li>
+
+<li>📊 Review investment performance regularly.</li>
+
+<li>🛡 Keep an emergency fund.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="card p-4">
+
+<h4>Goal Summary</h4>
+
+<table class="table table-bordered">
+
+<tr>
+
+<th>Goal Amount</th>
+
+<td>₹ {{ goal_amount }}</td>
+
+</tr>
+
+<tr>
+
+<th>Current Portfolio</th>
+
+<td>₹ {{ total_current }}</td>
+
+</tr>
+
+<tr>
+
+<th>Progress</th>
+
+<td>{{ progress }}%</td>
+
+</tr>
+
+</table>
+
+</div>
+
+<br>
+
+<div class="text-center">
+
+<a href="/dashboard" class="btn btn-primary">
+
+⬅ Back to Dashboard
+
+</a>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
