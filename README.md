@@ -15,10 +15,11 @@ Smart Finance Insights is a web-based personal finance management and analytics 
 2. [Features](#features)
 3. [Technology Stack](#technology-stack)
 4. [Project Structure](#project-structure)
+5. [Module Documentation](#module-documentation)
 
 ---
 
-## 🔗 Overview
+## Overview
 
 Smart Finance Insights provides a centralized platform for recording, managing, analysing, and visualizing personal financial information. Users can maintain their financial transactions, create budgets and saving goals, manage investments, analyse spending patterns, monitor financial health, and generate reports.
 
@@ -161,3 +162,62 @@ smart-finance-insights/
 │
 └── exports/                    # Generated PDF/Excel reports (auto-created)
 ```
+## Module Documentation
+
+### Authentication (`modules/auth.py`)
+- `POST /register` — Create new user account
+- `POST /login` — Authenticate user, create session
+- `GET /logout` — Clear session
+- `GET/POST /profile` — View/edit profile
+- `POST /change-password` — Change password
+
+### Expenses (`modules/expenses.py`)
+- `GET /expenses` — List transactions (with filters)
+- `POST /expenses/add` — Add income or expense
+- `POST /expenses/edit/<id>` — Edit transaction
+- `POST /expenses/delete/<type>/<id>` — Delete transaction
+- `GET /api/transaction/<id>` — Get transaction (AJAX)
+
+### Budget (`modules/budget.py`)
+- `GET /budget` — View budgets with utilization
+- `POST /budget/add` — Add/update budget
+- `POST /budget/delete/<id>` — Delete budget
+
+### Investments (`modules/investments.py`)
+- `GET /investments` — Portfolio with P/L, ROI, allocation
+- `POST /investments/add` — Add investment
+- `POST /investments/edit/<id>` — Edit investment
+- `POST /investments/delete/<id>` — Delete investment
+- `GET /portfolio-analytics` — Analytics dashboard with growth charts & risk
+
+### Goals (`modules/goals.py`)
+- `GET /goals` — List goals with progress
+- `POST /goals/add` — Create goal
+- `POST /goals/edit/<id>` — Edit goal
+- `POST /goals/contribute/<id>` — Add savings to goal
+- `POST /goals/delete/<id>` — Delete goal
+
+### Intelligence (`modules/intelligence.py` + analysis/insights/health_score)
+- `GET /analysis` — Spending pattern analysis
+- `GET /budget-recommendations` — AI budget recommendations
+- `GET /insights` — AI financial insights
+- `GET /health-score` — Financial health score
+
+### Notifications (`modules/notifications.py`)
+- `GET /notifications` — View all notifications (auto-generates new ones)
+- `POST /notifications/<id>/mark-read` — Mark as read
+- `POST /notifications/mark-all-read` — Mark all as read
+- `POST /notifications/<id>/delete` — Delete notification
+- `GET /api/notifications/count` — Count for badge (AJAX)
+
+### Reports & Export (`modules/reports.py` + `modules/export.py`)
+- `GET /reports?type=expense|budget|investment|goal` — View report
+- `GET /export/pdf/<type>` — Download PDF
+- `GET /export/excel/<type>` — Download Excel
+
+### JARVIS AI Assistant (`modules/jarvis.py`)
+- `GET /jarvis` — Chat interface
+- `POST /jarvis/chat` — Send message, get AI response
+- `POST /jarvis/clear` — Clear chat history
+
+---
