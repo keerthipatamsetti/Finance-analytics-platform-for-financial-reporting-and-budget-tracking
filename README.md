@@ -15,7 +15,7 @@ Finance analytics platform for financial reporting and budget tracking  is a web
 
 ---
 
-## 🔗 Overview
+## 🔗 📌 Project Overview
 
 **Smart Finance Insights** is a web application that helps users manage their personal finances by recording income and expenses, creating budgets, tracking investments and goals, viewing AI-powered insights, and generating financial reports — all in one beautiful dashboard.
 
