@@ -1,4 +1,4 @@
-This is__bold__ text.Finance analytics platform for financial reporting and budget tracking
+#Finance analytics platform for financial reporting and budget tracking
 Personal Finance Management & Analytics Platform
  Finance analytics platform for financial reporting and budget tracking  is a web-based personal finance management and analytics platform designed to help users manage their income, expenses, budgets, savings, investments, and overall financial health in one centralized application. The system also provides AI-based financial insights and a Jarvis Chat Assistant to help users understand their financial information and make better financial decisions.
 
