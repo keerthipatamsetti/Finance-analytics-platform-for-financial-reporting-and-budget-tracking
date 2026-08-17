@@ -14,8 +14,7 @@ Smart Finance Insights is a web-based personal finance management and analytics 
 1. [Overview](#overview)
 2. [Features](#features)
 3. [Technology Stack](#technology-stack)
-4. [Installation & Setup](#installation--setup)
-5. [Project Structure](#project-structure)
+4. [Project Structure](#project-structure)
 
 ---
 
@@ -102,26 +101,63 @@ The application combines financial management, data analytics, visualization, in
 
 ---
 
-## Installation & Setup
-Prerequisites
-Python 3.8 or higher
-pip (Python package manager)
-Steps
-Extract/Download the project folder:
-
-cd smart-finance-insights
-Install dependencies:
-
-pip install -r requirements.txt
-Initialize the database (creates tables + sample data):
-
-python init_db.py
-This creates finance.db with a demo user and comprehensive sample data (6 months of transactions, budgets, investments, goals, notifications).
-
-Start the application:
-
-python app.py
-Open in browser:
-
-http://localhost:5000
-
+## Project Structure
+```
+smart-finance-insights/
+├── app.py                      # Main Flask application & route registration
+├── config.py                   # Configuration (DB path, secret key, etc.)
+├── init_db.py                  # Database initialization & sample data seeding
+├── requirements.txt            # Python dependencies
+├── README.md                   # This file
+├── finance.db                  # SQLite database (auto-created)
+│
+├── modules/                    # All business logic (Flask Blueprints)
+│   ├── __init__.py
+│   ├── auth.py                 # User auth: register, login, logout, profile
+│   ├── expenses.py             # Income & expense transaction management
+│   ├── budget.py               # Monthly budget planning & monitoring
+│   ├── investments.py          # Investment portfolio + portfolio analytics
+│   ├── goals.py                # Financial goal planning & tracking
+│   ├── dashboard.py            # Main dashboard (combines all data)
+│   ├── intelligence.py         # Analysis, recommendations, insights, health routes
+│   ├── analysis.py             # Spending pattern analysis engine
+│   ├── insights.py             # AI-based financial insights generator
+│   ├── health_score.py         # Financial health score calculator
+│   ├── notifications.py        # Alert & notification system
+│   ├── reports.py              # Financial reports (4 types)
+│   ├── export.py               # PDF & Excel export functionality
+│   └── jarvis.py               # JARVIS AI Financial Assistant chatbot
+│
+├── utils/                      # Utility functions
+│   ├── __init__.py
+│   ├── db.py                   # Database connection helpers
+│   └── helpers.py              # Currency formatting, auth decorator, etc.
+│
+├── templates/                  # Jinja2 HTML templates (18 pages)
+│   ├── base.html               # Base layout with sidebar navigation
+│   ├── login.html              # Login page
+│   ├── register.html           # Registration page
+│   ├── profile.html            # User profile management
+│   ├── dashboard.html          # Main financial dashboard
+│   ├── expenses.html           # Transaction management
+│   ├── budget.html             # Budget planner
+│   ├── investments.html        # Investment portfolio
+│   ├── goals.html              # Financial goals
+│   ├── analysis.html           # Spending pattern analysis
+│   ├── budget_recommendations.html  # AI budget recommendations
+│   ├── insights.html           # AI financial insights
+│   ├── health_score.html       # Financial health score
+│   ├── notifications.html      # Alerts & notifications
+│   ├── reports.html            # Financial reports (4 types)
+│   ├── portfolio_analytics.html # Portfolio analytics dashboard
+│   ├── jarvis.html             # JARVIS chatbot interface
+│   └── error.html              # Error pages (404/500)
+│
+├── static/                     # Static assets
+│   ├── css/
+│   │   └── style.css           # Complete stylesheet (green theme)
+│   └── js/
+│       └── main.js             # JavaScript (charts, modals, JARVIS chat)
+│
+└── exports/                    # Generated PDF/Excel reports (auto-created)
+```
