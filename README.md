@@ -103,8 +103,25 @@ The application combines financial management, data analytics, visualization, in
 ---
 
 ## Installation & Setup
+Prerequisites
+Python 3.8 or higher
+pip (Python package manager)
+Steps
+Extract/Download the project folder:
 
-### 1. Clone the Repository
+cd smart-finance-insights
+Install dependencies:
 
-```bash
-git clone https://github.com/yourusername/your-repository.git
+pip install -r requirements.txt
+Initialize the database (creates tables + sample data):
+
+python init_db.py
+This creates finance.db with a demo user and comprehensive sample data (6 months of transactions, budgets, investments, goals, notifications).
+
+Start the application:
+
+python app.py
+Open in browser:
+
+http://localhost:5000
+
