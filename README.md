@@ -16,7 +16,7 @@ Smart Finance Insights is a web-based personal finance management and analytics 
 3. [Technology Stack](#technology-stack)
 4. [Project Structure](#project-structure)
 5. [Module Documentation](#module-documentation)
-
+6. [API Endpoints](#api-endpoints)
 ---
 
 ## Overview
@@ -219,5 +219,61 @@ smart-finance-insights/
 - `GET /jarvis` — Chat interface
 - `POST /jarvis/chat` — Send message, get AI response
 - `POST /jarvis/clear` — Clear chat history
+
+---
+## API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/transaction/<id>` | GET | Get transaction details (for edit modal) |
+| `/api/investment/<id>` | GET | Get investment details (for edit modal) |
+| `/api/goal/<id>` | GET | Get goal details (for edit modal) |
+| `/api/notifications/count` | GET | Get active notification count |
+| `/jarvis/chat` | POST | Send message to JARVIS, get response |
+
+---
+
+
+
+### Color Scheme
+- Primary: Green (`#16a34a`)
+- Income/Success: Emerald (`#10b981`)
+- Expense/Danger: Red (`#ef4444`)
+- Warning: Amber (`#f59e0b`)
+- Background: Light gray (`#f8fafc`)
+- Cards: White (`#ffffff`)
+
+---
+
+## Database Schema
+
+| Table | Purpose |
+|-------|---------|
+| `users` | User accounts (name, email, password hash, phone, occupation, income) |
+| `income` | Income records (source, amount, date, notes) |
+| `expenses` | Expense records (category, description, amount, date) |
+| `budgets` | Monthly budgets per category (amount, month, year) |
+| `investments` | Investment holdings (asset_type, name, invested, current_value) |
+| `goals` | Financial goals (name, target, saved, target_date, category) |
+| `notifications` | Alert notifications (type, message, priority, status) |
+| `bills` | Upcoming bills (name, amount, due_date, status) |
+| `jarvis_chat` | JARVIS conversation history (role, message) |
+
+---
+
+## Development Notes
+
+- **No external database server needed** — SQLite is file-based and included with Python
+- **All passwords are hashed** using SHA-256 with a salt prefix
+- **SQL injection prevention** — all queries use parameterized statements
+- **Session security** — HTTPOnly cookies, configurable session lifetime
+- **Input validation** — server-side validation on all forms
+- **Responsive design** — mobile-first with breakpoints at 640px and 1024px
+
+---
+
+## License
+
+This project is created for educational purposes as part of the Smart Finance Insights curriculum.
 
 ---
